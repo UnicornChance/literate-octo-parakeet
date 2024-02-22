@@ -21,20 +21,22 @@
     {
       "groupName": "Gitlab Runner Support Dependencies",
       "labels": ["support-deps"],
-      "commitMessageTopic": "dependency {{depName}} from currentValue: {{currentValue}} displayFrom: {{displayFrom}} currentVersion: {{currentVersion}} displayTo: {{displayTo}} newValue: {{newValue}} newVersion: {{newVersion}} version: {{version}}",
+      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
+      "commitMessageTo": "to {{displayTo}}",
       "packagePatterns": ["*"]
     },
     {
       "groupName": "Gitlab Runner Package Dependencies",
       "labels": ["package-deps"],
-      "commitMessageTopic": "dependency {{depName}} from currentValue: {{currentValue}} displayFrom: {{displayFrom}} currentVersion: {{currentVersion}} displayTo: {{displayTo}} newValue: {{newValue}} newVersion: {{newVersion}} version: {{version}}",
-      "registryUrls": ["https://registry1.dso.mil"],
+      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
+      "commitMessageTo": "to {{displayTo}}",
       "matchDatasources": ["docker"]
     },
     {
       "groupName": "Gitlab Runner Package Dependencies",
       "labels": ["package-deps"],
-      "commitMessageTopic": "dependency {{depName}} from currentValue: {{currentValue}} displayFrom: {{displayFrom}} currentVersion: {{currentVersion}} displayTo: {{displayTo}} newValue: {{newValue}} newVersion: {{newVersion}} version: {{version}}",
+      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
+      "commitMessageTo": "to {{displayTo}}",
       "matchDatasources": ["helm"]
     }
   ]
