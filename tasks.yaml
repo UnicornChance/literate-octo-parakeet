@@ -45,3 +45,8 @@ tasks:
     description: Delete the k3d cluster
     actions:
       - cmd: k3d cluster delete uds
+
+  - name: test
+    description: Testing
+    actions:
+      - cmd: echo "testing"

@@ -4,3 +4,8 @@ tasks:
     actions:
       - cmd: zarf package create pkg-deps/gitlab/dev-secrets/ --confirm --no-progress --architecture=${UDS_ARCH} --skip-sbom
       - cmd: uds create pkg-deps/gitlab/bundle --confirm --no-progress --architecture=${UDS_ARCH}
+
+  - name: gitlab
+    description: Testing task
+    actions:
+      - cmd: echo "Test"
