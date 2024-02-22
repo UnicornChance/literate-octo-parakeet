@@ -14,5 +14,28 @@
         "password": "wcFMA/xDdHCJBTolAQ//bIh3gM5E9KAHDhgc5XNikCZnTdCp2wVPB3pDVcpHZbrPMvpvpUfxorwgPlDAv7XYM9gYIu2IgpynmLnFfCOnHh3EouyQOzYNDgMNh/inXGpYdSy+zf2tc7q4EB2ibWPVcCHlesGIDBzm+jEQpwfl8fMfO8ZZuQZU9Vr++tS9Xv2MeMDONPpP/YYNZO+Za6w/6B3srj7XokR3yCWI9LVnVkK32MBeq5otg2WokeMH+6PoXAVi1clFDxYj5gFq8Dn8xqzEC+Zv6mk6m4mUvWKbjSCXr9QLFK9sy8hsR8FRtYJqSmBc+QmZpUmMlnV1LQ8EBG1OXYHP/r1HlQakIicYSYmVrMMcAg5Tzb8ICDysHA65F2YfcHnZiyt4Dyesfs4W42LWujd1iXhHJOsAi0fDQXQ3AZrAQBK1rxU22hFj3BBxUzYw23DWklbaM3nIxt0/XGR3E6F/0GTuwVWWl4DH82M7M2ZCxB0Wgb4Hu5gOn+ocyVnUj2UOTCRCloKVeKDRml4UC/R1wqXXKSI2q1oHXClVxhc9mJtQ357Lu5IXmvJSMT6fVQSbLMaUmwOP/6Gdra9eZzYuGTAt6lDpPNlmUK5ZIjvhMmgsTd516J37kaOo/ctLD4/HeYuuCUpIwdd1cLvnxXL+JfeFQgkcZEGd3tHSbQucZKZd4ZN+JHW/Mg7SXQGgKowu8hC2SEuSutuCzyJjE/1YAMX7PM2my7pBPNUgYQUgp/3/NqqQEASeeltRXzH/yyEAKHZo2RjTlyOWW+Wo7yrJbwnixDt3sIhTWt11dX+A/yfMGCkIMOX/8Q"
       }
     }
+  ],
+  "packageRules": [
+    {
+      "groupName": "Gitlab Runner Support Dependencies",
+      "labels": ["support-deps"],
+      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
+      "commitMessageExtra": "to {{displayTo}}",
+      "packagePatterns": ["*"]
+    },
+    {
+      "groupName": "Gitlab Runner Package Dependencies",
+      "labels": ["package-deps"],
+      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
+      "commitMessageExtra": "to {{displayTo}}",
+      "matchDatasources": ["docker"]
+    },
+    {
+      "groupName": "Gitlab Runner Package Dependencies",
+      "labels": ["package-deps"],
+      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
+      "commitMessageExtra": "to {{displayTo}}",
+      "matchDatasources": ["helm"]
+    }
   ]
 }
