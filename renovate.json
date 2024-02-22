@@ -22,21 +22,21 @@
       "groupName": "Gitlab Runner Support Dependencies",
       "labels": ["support-deps"],
       "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
-      "commitMessageTo": "to {{displayTo}}",
+      "commitMessageExtra": "to {{displayTo}}",
       "packagePatterns": ["*"]
     },
     {
       "groupName": "Gitlab Runner Package Dependencies",
       "labels": ["package-deps"],
       "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
-      "commitMessageTo": "to {{displayTo}}",
+      "commitMessageExtra": "to {{displayTo}}",
       "matchDatasources": ["docker"]
     },
     {
       "groupName": "Gitlab Runner Package Dependencies",
       "labels": ["package-deps"],
       "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
-      "commitMessageTo": "to {{displayTo}}",
+      "commitMessageExtra": "to {{displayTo}}",
       "matchDatasources": ["helm"]
     }
   ]
