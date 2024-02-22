@@ -1,5 +1,23 @@
 # Changelog
 
+## [16.8.0-uds.3](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.2...v16.8.0-uds.3) (2024-02-22)
+
+
+### Features
+
+* fix release please ([a2866da](https://github.com/UnicornChance/literate-octo-parakeet/commit/a2866da0a0c7adedebe65e34544e31e9a303b9fe))
+
+
+### Bug Fixes
+
+* update minio version ([0b67b1a](https://github.com/UnicornChance/literate-octo-parakeet/commit/0b67b1ab87998f5bad5943d5c7c877f665a602ad))
+
+
+### Miscellaneous
+
+* **deps:** update gitlab runner package dependencies to v0.0.2 ([33e4b64](https://github.com/UnicornChance/literate-octo-parakeet/commit/33e4b642b9aaa9f38a8b5370dc74d5a8e2545bf7))
+* update redis ([580ac1a](https://github.com/UnicornChance/literate-octo-parakeet/commit/580ac1a13f2cf3d76f9dd8d5ba143aedaf52ddbc))
+
 ## [16.8.0-uds.2](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.1...v16.8.0-uds.2) (2024-02-22)
 
 
