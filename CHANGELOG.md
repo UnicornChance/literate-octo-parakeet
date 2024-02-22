@@ -1,5 +1,43 @@
 # Changelog
 
+## [16.8.0-uds.3](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.2...v16.8.0-uds.3) (2024-02-22)
+
+
+### Features
+
+* fix release please ([a2866da](https://github.com/UnicornChance/literate-octo-parakeet/commit/a2866da0a0c7adedebe65e34544e31e9a303b9fe))
+
+
+### Bug Fixes
+
+* add release please content ([b9aaa71](https://github.com/UnicornChance/literate-octo-parakeet/commit/b9aaa71906aaf5382f22c91df0d71c8313a2451d))
+* add release please content 2 ([4b7b69e](https://github.com/UnicornChance/literate-octo-parakeet/commit/4b7b69e7da7f88cda3d1bc330074e4926b4229c9))
+* random things ([2553531](https://github.com/UnicornChance/literate-octo-parakeet/commit/2553531a814b004569fb9e62839c55017d75ca1c))
+* random things ([6cf3ba3](https://github.com/UnicornChance/literate-octo-parakeet/commit/6cf3ba30261cc3531b437042162d36dd6109360c))
+* random things 1 ([3d8a959](https://github.com/UnicornChance/literate-octo-parakeet/commit/3d8a959f3cfe92a6aa3b8d70b245da4fafb6d7bf))
+* random things 2 ([9cf0a94](https://github.com/UnicornChance/literate-octo-parakeet/commit/9cf0a948ffa18a1b4222c065e90260a622e61883))
+* random things 3 ([b262561](https://github.com/UnicornChance/literate-octo-parakeet/commit/b262561c63168e460bfda26c6fe7baadfa4cc077))
+* test renovate ([630435b](https://github.com/UnicornChance/literate-octo-parakeet/commit/630435b03dae78139007ca71f7e82c8c0efd8ebf))
+* update minio version ([0b67b1a](https://github.com/UnicornChance/literate-octo-parakeet/commit/0b67b1ab87998f5bad5943d5c7c877f665a602ad))
+* update readme ([11d8926](https://github.com/UnicornChance/literate-octo-parakeet/commit/11d89265291e9d3ab5e49c651d6f40872f6aff6d))
+* update renovate ([4d152cc](https://github.com/UnicornChance/literate-octo-parakeet/commit/4d152ccdbc2abe9c4cfa70f5ff9fac52d5a2d0cf))
+* update renovate ([f7ac20d](https://github.com/UnicornChance/literate-octo-parakeet/commit/f7ac20d9d7f58903f538dc90e71ee0a365c11c59))
+* update renovate and release please ([46c9321](https://github.com/UnicornChance/literate-octo-parakeet/commit/46c9321691da7020125e814291eb5ec830624213))
+
+
+### Updated Dependencies
+
+* **deps:** update gitlab runner package dependencies ([41b65cf](https://github.com/UnicornChance/literate-octo-parakeet/commit/41b65cf2c5b3e87f9527c852920ed1035f83ae30))
+
+
+### Miscellaneous
+
+* **deps:** update gitlab runner package dependencies to v0.0.2 ([946bf25](https://github.com/UnicornChance/literate-octo-parakeet/commit/946bf2517605dc3e93973263c8456b71af341fed))
+* **deps:** update gitlab runner package dependencies to v0.0.2 ([983eac8](https://github.com/UnicornChance/literate-octo-parakeet/commit/983eac8d7961c2b6c99b9aee05d8ff8f0e13cf56))
+* **deps:** update gitlab runner package dependencies to v0.0.2 ([33e4b64](https://github.com/UnicornChance/literate-octo-parakeet/commit/33e4b642b9aaa9f38a8b5370dc74d5a8e2545bf7))
+* update redis ([580ac1a](https://github.com/UnicornChance/literate-octo-parakeet/commit/580ac1a13f2cf3d76f9dd8d5ba143aedaf52ddbc))
+* update the token used by release please ([c4c2ca1](https://github.com/UnicornChance/literate-octo-parakeet/commit/c4c2ca1802b99077774fcde69db51a909c3b7309))
+
 ## [16.8.0-uds.2](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.1...v16.8.0-uds.2) (2024-02-22)
 
 
