@@ -21,17 +21,20 @@
     {
       "groupName": "Gitlab Runner Support Dependencies",
       "labels": ["support-deps"],
+      "commitMessageTopic": "dependency {{depName}} from {{currentValue}}",
       "packagePatterns": ["*"]
     },
     {
       "groupName": "Gitlab Runner Package Dependencies",
       "labels": ["package-deps"],
+      "commitMessageTopic": "dependency {{depName}} from {{currentValue}}",
       "registryUrls": ["https://registry1.dso.mil"],
       "matchDatasources": ["docker"]
     },
     {
       "groupName": "Gitlab Runner Package Dependencies",
       "labels": ["package-deps"],
+      "commitMessageTopic": "dependency {{depName}} from {{currentValue}}",
       "matchDatasources": ["helm"]
     }
   ]
