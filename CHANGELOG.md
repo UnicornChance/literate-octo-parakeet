@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.8.0-uds.5](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.4...v16.8.0-uds.5) (2024-02-22)
+
+
+### Updated Dependencies
+
+* **deps:** update gitlab runner package dependencies to 0.0.2 ([3a636ba](https://github.com/UnicornChance/literate-octo-parakeet/commit/3a636ba96f00dbf88b9f6d938db077622f72fd0b))
+
 ## [16.8.0-uds.4](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.3...v16.8.0-uds.4) (2024-02-22)
 
 
