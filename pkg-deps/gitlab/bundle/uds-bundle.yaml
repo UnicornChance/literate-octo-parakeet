@@ -7,7 +7,7 @@ metadata:
 packages:
   - name: dev-minio
     repository: ghcr.io/defenseunicorns/packages/uds/dev-minio
-    ref: 0.0.2
+    ref: 0.0.1
   
   - name: dev-postgres
     repository: ghcr.io/defenseunicorns/packages/uds/dev-postgres
