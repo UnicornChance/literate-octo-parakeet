@@ -1,11 +1,12 @@
 {
-    "extends": [
-      "github>defenseunicorns/uds-common//config/renovate.json5",
-      ":semanticCommitTypeAll(build)",
-      "group:all",
-      "replacements:all",
-      "workarounds:all"
-    ],
+  "extends": [
+    "github>defenseunicorns/uds-common//config/renovate.json5",
+    ":semanticCommitTypeAll(build)",
+    "group:all",
+    "replacements:all",
+    "workarounds:all"
+  ],
+  "fetchChangeLogs": "branch",
   "hostRules": [
     {
       "matchHost": "registry1.dso.mil",
