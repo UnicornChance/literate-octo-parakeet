@@ -17,8 +17,8 @@
   ],
   "packageRules": [
     {
-      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
-      "commitMessageExtra": "to {{displayTo}}",
+      "commitMessageTopic": "dependency {{depName}} `{{displayFrom}}` -> ",
+      "commitMessageExtra": "`{{displayTo}}`",
       "packagePatterns": ["*"]
     }
   ]
