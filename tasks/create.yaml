@@ -1,0 +1,6 @@
+tasks:
+  - name: gitlab-bundle
+    description: Create Gitlab Bundle with Dependencies
+    actions:
+      - cmd: zarf package create pkg-deps/gitlab/dev-secrets/ --confirm --no-progress --architecture=${UDS_ARCH} --skip-sbom
+      - cmd: uds create pkg-deps/gitlab/bundle --confirm --no-progress --architecture=${UDS_ARCH}

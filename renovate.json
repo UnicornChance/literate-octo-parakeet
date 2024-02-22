@@ -1,6 +1,42 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+    "extends": [
+      "github>defenseunicorns/uds-common//config/renovate.json5",
+      ":semanticCommits",
+      ":semanticPrefixFixDepsChoreOthers",
+      "group:all",
+      "replacements:all",
+      "workarounds:all"
+    ],
+  "hostRules": [
+    {
+      "matchHost": "registry1.dso.mil",
+      "hostType": "docker",
+      "description": "Encrypted creds for registry1, scoped to this Github org using: https://github.com/renovatebot/renovate/blob/main/docs/usage/configuration-options.md#encrypted",
+      "encrypted": {
+        "username": "wcFMA/xDdHCJBTolARAAkKAPffLz+tN3Z1o6wv6FGjXxvcVhePB3Kt22/lPSJuYsbvl83DRRxc9Q8sh7tsfRc6VhGklrxCdwqk/GrDrsMn+/94HXIdW/DNEeo6z9VDwxRanVbPT7arfJL40ebBnyegSzbRF3Tsfe/Pn7G32D6D+4Z0dgCMWMrsOe5/kD60v8Nj9zVKVYAhqOiBTS0PdFm8fBF1M8Xh6nzo6PwKWz9R938D6NzrL6eXP+apgGSjqPYKswSP5Y+oDUeCxPSoxzXPZzRHK5qd7tHstjsLP2IIzNP4ed+W/a+k0h891XiEEpG8MHSYmp+bwfJdoI8IM5s2+wZSRAdCC6K+JBleIrPNFHeq534QxfYHOc54aDSUQG9LeePD4S0v9xx5TYpB3l8WmPo2YFwwFnKArUiL/aeupaAcs78qHFSNTe9MAI8XzbqYAPVKCLvLfd2TnsxA2jHltDtBOK3yFOc2Sohddfph9RTl6ffMCdHkSCmOfC2MkijC4XER7fkEqvMV2zDk91Ycc6O9e37YS9mWpV0I2B1S5Ol7edHyie+W7K0B1yJcGdfkY/ZH/w4wuFGkQMnj8GCXRFIN3a/aPMg3/pkLeMb4FB/mOOblgFOD04VlNdSqiXLDNLCSerunzlOrviFgmFXu848jIkj7CuHIt4e1bhwvQ1Su853nhPvvFvNXpEvpTSYgFZ0522opA91XkShaJLudeRDZefDqPfDFG02K//iBAX5Vwvtc2ntnfELaBevGW2kXU9MUysD7oN6EWhHQDEPSBEoq7bcOtDNbZDPzi+QJVJNqS8Sl4mMJaZ8gubgG9/1xl1",
+        "password": "wcFMA/xDdHCJBTolAQ//bIh3gM5E9KAHDhgc5XNikCZnTdCp2wVPB3pDVcpHZbrPMvpvpUfxorwgPlDAv7XYM9gYIu2IgpynmLnFfCOnHh3EouyQOzYNDgMNh/inXGpYdSy+zf2tc7q4EB2ibWPVcCHlesGIDBzm+jEQpwfl8fMfO8ZZuQZU9Vr++tS9Xv2MeMDONPpP/YYNZO+Za6w/6B3srj7XokR3yCWI9LVnVkK32MBeq5otg2WokeMH+6PoXAVi1clFDxYj5gFq8Dn8xqzEC+Zv6mk6m4mUvWKbjSCXr9QLFK9sy8hsR8FRtYJqSmBc+QmZpUmMlnV1LQ8EBG1OXYHP/r1HlQakIicYSYmVrMMcAg5Tzb8ICDysHA65F2YfcHnZiyt4Dyesfs4W42LWujd1iXhHJOsAi0fDQXQ3AZrAQBK1rxU22hFj3BBxUzYw23DWklbaM3nIxt0/XGR3E6F/0GTuwVWWl4DH82M7M2ZCxB0Wgb4Hu5gOn+ocyVnUj2UOTCRCloKVeKDRml4UC/R1wqXXKSI2q1oHXClVxhc9mJtQ357Lu5IXmvJSMT6fVQSbLMaUmwOP/6Gdra9eZzYuGTAt6lDpPNlmUK5ZIjvhMmgsTd516J37kaOo/ctLD4/HeYuuCUpIwdd1cLvnxXL+JfeFQgkcZEGd3tHSbQucZKZd4ZN+JHW/Mg7SXQGgKowu8hC2SEuSutuCzyJjE/1YAMX7PM2my7pBPNUgYQUgp/3/NqqQEASeeltRXzH/yyEAKHZo2RjTlyOWW+Wo7yrJbwnixDt3sIhTWt11dX+A/yfMGCkIMOX/8Q"
+      }
+    }
+  ],
+  "packageRules": [
+    {
+      "groupName": "Gitlab Runner Support Dependencies",
+      "labels": ["support-deps"],
+      "commitMessageTopic": "support-deps",
+      "packagePatterns": ["*"]
+    },
+    {
+      "groupName": "Gitlab Runner Package Dependencies",
+      "labels": ["package-deps"],
+      "commitMessageTopic": "package-deps",
+      "registryUrls": ["https://registry1.dso.mil"],
+      "matchDatasources": ["docker"]
+    },
+    {
+      "groupName": "Gitlab Runner Package Dependencies",
+      "labels": ["package-deps"],
+      "commitMessageTopic": "package-deps",
+      "matchDatasources": ["helm"]
+    }
   ]
 }
