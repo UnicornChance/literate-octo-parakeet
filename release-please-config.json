@@ -5,6 +5,7 @@
       "changelog-sections": [
         { "type": "feat", "section": "Features", "hidden": false },
         { "type": "fix", "section": "Bug Fixes", "hidden": false },
+        { "type": "build", "section": "Updated Dependencies", "hidden": false },
         { "type": "chore", "section": "Miscellaneous", "hidden": false }
       ],
       "release-type": "simple",
