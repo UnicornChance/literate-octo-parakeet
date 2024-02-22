@@ -25,8 +25,8 @@ jobs:
       - id: release-flag
         run: echo "release_created=${{ steps.tag.outputs.release_created || false }}" >> $GITHUB_OUTPUT
 
-  publish-uds-package:
-    needs: tag-new-version
-    if: ${{ needs.tag-new-version.outputs.release_created == 'true'}}
-    uses: ./.github/workflows/publish-uds-package.yml
-    secrets: inherit
+  # publish-uds-package:
+  #   needs: tag-new-version
+  #   if: ${{ needs.tag-new-version.outputs.release_created == 'true'}}
+  #   uses: ./.github/workflows/publish-uds-package.yml
+  #   secrets: inherit
