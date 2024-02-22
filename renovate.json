@@ -1,7 +1,10 @@
 {
     "extends": [
       "github>defenseunicorns/uds-common//config/renovate.json5",
-      ":semanticCommitTypeAll(build)"
+      ":semanticCommitTypeAll(build)",
+      "group:all",
+      "replacements:all",
+      "workarounds:all"
     ],
   "hostRules": [
     {
