@@ -1,5 +1,22 @@
 # Changelog
 
+## [16.8.0-uds.2](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.1...v16.8.0-uds.2) (2024-02-22)
+
+
+### Features
+
+* add new cli task ([8e8dffc](https://github.com/UnicornChance/literate-octo-parakeet/commit/8e8dffc51aab47f7cc2ad6945a5cc89e4b6dcbc6))
+
+
+### Bug Fixes
+
+* update existing task ([23085cd](https://github.com/UnicornChance/literate-octo-parakeet/commit/23085cd8caa80cbaf317171e8f6986e28260d081))
+
+
+### Miscellaneous
+
+* update readme ([e08d7a5](https://github.com/UnicornChance/literate-octo-parakeet/commit/e08d7a5e29694f8813da7b8a6057f7ae807dc297))
+
 ## [16.8.0-uds.1](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.0...v16.8.0-uds.1) (2024-02-22)
 
 
