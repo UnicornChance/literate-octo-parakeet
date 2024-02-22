@@ -6,7 +6,7 @@
         { "type": "feat", "section": "Features", "hidden": false },
         { "type": "fix", "section": "Bug Fixes", "hidden": false },
         { "type": "chore", "section": "Miscellaneous", "hidden": false },
-        { "type": "chore(deps)", "section": "Dependency Updates", "hidden": false }
+        { "type": "test", "section": "Dependency Updates", "hidden": false }
       ],
       "release-type": "simple",
       "bump-minor-pre-major": true,
