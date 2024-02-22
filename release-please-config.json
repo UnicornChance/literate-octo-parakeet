@@ -5,6 +5,8 @@
       "changelog-sections": [
         { "type": "feat", "section": "Features", "hidden": false },
         { "type": "fix", "section": "Bug Fixes", "hidden": false },
+        { "type": "chore(deps)", "section": "Chore Deps", "hidden": false },
+        { "type": "deps", "section": "Deps", "hidden": false },
         { "type": "chore", "section": "Miscellaneous", "hidden": false }
       ],
       "release-type": "simple",
