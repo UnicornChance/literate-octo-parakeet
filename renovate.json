@@ -1,7 +1,8 @@
 {
   "extends": [
     "github>defenseunicorns/uds-common//config/renovate.json5",
-    ":semanticCommitTypeAll(build)"
+    ":semanticCommitTypeAll(build)",
+    "group:all"
   ],
   "fetchChangeLogs": "branch",
   "hostRules": [
@@ -17,8 +18,8 @@
   ],
   "packageRules": [
     {
-      "commitMessageTopic": "dependency {{depName}} `{{displayFrom}}` -> ",
-      "commitMessageExtra": "`{{displayTo}}`",
+      "commitMessageTopic": "dependency {{depName}} from {{displayFrom}}",
+      "commitMessageExtra": "to {{displayTo}}",
       "packagePatterns": ["*"]
     }
   ]
