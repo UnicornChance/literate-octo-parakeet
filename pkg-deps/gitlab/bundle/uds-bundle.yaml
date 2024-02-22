@@ -15,7 +15,7 @@ packages:
   
   - name: dev-redis
     repository: ghcr.io/defenseunicorns/packages/uds/dev-redis
-    ref: 0.0.1
+    ref: 0.0.2
   
   - name: dev-secrets
     path: ../../../
