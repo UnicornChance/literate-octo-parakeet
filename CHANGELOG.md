@@ -1,5 +1,13 @@
 # Changelog
 
+## [16.8.0-uds.1](https://github.com/UnicornChance/literate-octo-parakeet/compare/v16.8.0-uds.0...v16.8.0-uds.1) (2024-02-22)
+
+
+### Bug Fixes
+
+* update deps tracking ([1b233df](https://github.com/UnicornChance/literate-octo-parakeet/commit/1b233df8a57f9f338db6817570a5c0fee9d29b24))
+* update test ci ([e0cae2d](https://github.com/UnicornChance/literate-octo-parakeet/commit/e0cae2d0ade8058bf7561749755f857886864f43))
+
 ## [16.8.0-uds.0](https://github.com/defenseunicorns/uds-package-gitlab-runner/compare/v16.6.0-uds.0...v16.8.0-uds.0) (2024-02-05)
 
 
