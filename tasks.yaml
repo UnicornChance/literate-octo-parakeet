@@ -1,16 +1,10 @@
 includes:
   - cleanup: ./tasks/cleanup.yaml
   - bundle: ./tasks/bundle.yaml
-<<<<<<< Updated upstream
+  - lint: ./tasks/lint.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.0/tasks/create.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.0/tasks/deploy.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.0/tasks/setup.yaml
-=======
-  - lint: ./tasks/lint.yaml
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/create.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/setup.yaml
->>>>>>> Stashed changes
   - test: ./tasks/test.yaml
 
 tasks:
