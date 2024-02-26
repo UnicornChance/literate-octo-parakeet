@@ -1,6 +1,7 @@
 includes:
   - cleanup: ./tasks/cleanup.yaml
   - bundle: ./tasks/bundle.yaml
+  - lint: ./tasks/lint.yaml
   - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.0/tasks/create.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.0/tasks/deploy.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.2.0/tasks/setup.yaml
@@ -18,18 +19,18 @@ tasks:
     description: Deploy k3d cluster using uds-common-tasks
     actions:
       - task: setup:k3d-test-cluster
-  
+
   - name: create-package
     description: Create UDS Gitlab Package, No dependencies included
     actions:
       - task: create:package
-  
+
   - name: create-test-bundle
     description: Create UDS Gitlab bundle with dependencies
     actions:
       - task: create-package
       - task: bundle:gitlab-test-bundle
-  
+
   - name: deploy-test-bundle
     description: Deploy UDS Gitlab bundle with dependencies using uds-common-tasks
     actions:
@@ -50,3 +51,13 @@ tasks:
     description: Remove the Deployed UDS Gitlab Bundle
     actions:
       - task: cleanup:bundle
+
+  - name: lint-check
+    description: "Run linting checks"
+    actions:
+      - task: lint:check
+
+  - name: lint-fix
+    description: "Fix linting issues"
+    actions:
+      - task: lint:fix
