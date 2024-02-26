@@ -1,6 +1,6 @@
 # literate-octo-parakeet
 
-## This is for testing purposes and for testing setup
+## This is for testing purposes
 
 ### RENOVATE PLAYGROUND
 
