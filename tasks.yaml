@@ -1,6 +1,7 @@
 includes:
   - cleanup: ./tasks/cleanup.yaml
-  - create: ./tasks/create.yaml
+  - bundle: ./tasks/bundle.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/create.yaml
   - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/deploy.yaml
   - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/setup.yaml
   - test: ./tasks/test.yaml
@@ -21,12 +22,13 @@ tasks:
   - name: create-package
     description: Create UDS Gitlab Package, No dependencies included
     actions:
-      - task: create:gitlab-package
+      - task: create:package
   
   - name: create-test-bundle
     description: Create UDS Gitlab bundle with dependencies
     actions:
-      - task: create:gitlab-test-bundle
+      - task: create-package
+      - task: bundle:gitlab-test-bundle
   
   - name: deploy-test-bundle
     description: Deploy UDS Gitlab bundle with dependencies using uds-common-tasks
