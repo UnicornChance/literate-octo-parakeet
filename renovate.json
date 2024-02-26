@@ -1,12 +1,12 @@
 {
   "extends": [
     "github>defenseunicorns/uds-common//config/renovate.json5",
-    ":semanticCommitTypeAll(build)",
+    ":semanticCommits",
+    ":semanticPrefixFixDepsChoreOthers",
     "group:all",
     "replacements:all",
     "workarounds:all"
   ],
-  "fetchChangeLogs": "branch",
   "hostRules": [
     {
       "matchHost": "registry1.dso.mil",
@@ -20,24 +20,22 @@
   ],
   "packageRules": [
     {
-      "groupName": "Gitlab Runner Support Dependencies",
+      "groupName": "Gitlab Support Dependencies",
       "labels": ["support-deps"],
-      "commitMessageTopic": "dependency {{depName}} `{{displayFrom}}` -> ",
-      "commitMessageExtra": "`{{displayTo}}`",
+      "commitMessageTopic": "support-deps",
       "packagePatterns": ["*"]
     },
     {
-      "groupName": "Gitlab Runner Package Dependencies",
+      "groupName": "Gitlab Package Dependencies",
       "labels": ["package-deps"],
-      "commitMessageTopic": "dependency {{depName}} `{{displayFrom}}` -> ",
-      "commitMessageExtra": "`{{displayTo}}`",
+      "commitMessageTopic": "package-deps",
+      "registryUrls": ["https://registry1.dso.mil"],
       "matchDatasources": ["docker"]
     },
     {
-      "groupName": "Gitlab Runner Package Dependencies",
+      "groupName": "Gitlab Package Dependencies",
       "labels": ["package-deps"],
-      "commitMessageTopic": "dependency {{depName}} `{{displayFrom}}` -> ",
-      "commitMessageExtra": "`{{displayTo}}`",
+      "commitMessageTopic": "package-deps",
       "matchDatasources": ["helm"]
     }
   ]

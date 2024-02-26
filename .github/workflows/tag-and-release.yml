@@ -1,32 +1,20 @@
-name: Tag and Publish UDS Capability
+name: Publish UDS Package Gitlab
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
   tag-new-version:
+    name: Tag New Version
     permissions: write-all
     runs-on: ubuntu-latest
     outputs:
       release_created: ${{ steps.release-flag.outputs.release_created }}
     steps:
-      - name: Create Release Tag
+      - name: Create release tag
         id: tag
-        uses: google-github-actions/release-please-action@v4
-        with:
-          command: manifest # use configs in release-please-config.json
-          token: ${{ secrets.MY_PAT }}
+        uses: google-github-actions/release-please-action@v4.0.1
       - id: release-flag
         run: echo "release_created=${{ steps.tag.outputs.release_created || false }}" >> $GITHUB_OUTPUT
-
-  # publish-uds-package:
-  #   needs: tag-new-version
-  #   if: ${{ needs.tag-new-version.outputs.release_created == 'true'}}
-  #   uses: ./.github/workflows/publish-uds-package.yml
-  #   secrets: inherit

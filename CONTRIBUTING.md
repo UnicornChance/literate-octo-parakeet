@@ -1,4 +1,4 @@
-# Welcome to the GitLab Runner UDS Package
+# Welcome to the GitLab UDS Package
 
 Thank you for your interest in this Defense Unicorns UDS Package!
 
