@@ -2,13 +2,13 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: 'possible-bug 🐛'
+labels: possible-bug
 assignees: ''
 ---
 
 ### Environment
 Device and OS:
-App/package versions:
+App version:
 Kubernetes distro being used:
 Other:
 
