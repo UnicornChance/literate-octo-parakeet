@@ -1,61 +1,41 @@
-includes:
-  - cleanup: ./tasks/cleanup.yaml
-  - create: ./tasks/create.yaml
-  - lint: ./tasks/lint.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common-tasks/v0.1.2/tasks/setup.yaml
-  - test: ./tasks/test.yaml
+variables:
+  - name: VERSION
+    description: "The image tag"
+    # x-release-please-start-version
+    default: "0.3.0"
+    # x-release-please-end
 
 tasks:
-  - name: default
-    description: Create K3D Cluster with UDS-Core + Gitlab
+  - name: build-and-publish
     actions:
-      - task: create-test-bundle
-      - task: setup-cluster
-      - task: deploy-test-bundle
+      - cmd: |
+          docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag ghcr.io/defenseunicorns/uds/identity-config:${VERSION} src
 
-  - name: setup-cluster
-    description: Deploy k3d cluster using uds-common-tasks
+  - name: dev-update-image
     actions:
-      - task: setup:k3d-test-cluster
+      - cmd: |
+          docker build src -t uds-core-config:keycloak
+          k3d image import -c uds uds-core-config:keycloak
+          kubectl rollout restart statefulset -n keycloak keycloak
 
-  - name: create-package
-    description: Create UDS Gitlab Package, No dependencies included
+  - name: dev-theme
     actions:
-      - task: create:gitlab-package
+      - description: "Copy theme to Keycloak (must be run from src/keycloak dir)"
+        cmd: |
+          PV=$(kubectl get pvc keycloak-themes -n keycloak -o jsonpath='{.spec.volumeName}')
+          THEME_PATH=$(kubectl get pv $PV -o jsonpath="{.spec.hostPath.path}")
+          docker cp src/theme k3d-uds-server-0:/$THEME_PATH
 
-  - name: create-test-bundle
-    description: Create UDS Gitlab bundle with dependencies
+  - name: debug-istio-traffic
     actions:
-      - task: create:gitlab-test-bundle
+      - cmd: istioctl proxy-config log keycloak-0.keycloak --level debug
+      - cmd: kubectl -n keycloak logs keycloak-0 -c istio-proxy -f
 
-  - name: deploy-test-bundle
-    description: Deploy UDS Gitlab bundle with dependencies using uds-common-tasks
+  - name: regenerate-test-pki
     actions:
-      - task: deploy:test-bundle
-
-  - name: test-package
-    description: Run health checks and ingress tests
-    actions:
-      - task: test:health-check
-      - task: test:ingress
-
-  - name: cleanup
-    description: Destroy k3d Cluster
-    actions:
-      - task: cleanup:cluster
-
-  - name: cleanup-bundle
-    description: Remove the Deployed UDS Gitlab Bundle
-    actions:
-      - task: cleanup:bundle
-
-  - name: lint-check
-    description: "Run linting checks"
-    actions:
-      - task: lint:check
-
-  - name: lint-fix
-    description: "Fix linting issues"
-    actions:
-      - task: lint:fix
+      - cmd: |
+          openssl genrsa -out test.pem 2048
+          openssl genrsa -out ca.pem 2048
+          openssl req -x509 -new -nodes -key ca.pem -sha256 -days 1825 -out ca.crt -subj "/C=US/O=U.S. Government/OU=DoD/OU=PKI/CN=DOD ID CA-59 FAKE TEST"
+          openssl req -new -key test.pem -out test.csr -config csr.conf
+          openssl x509 -req -in test.csr -CA ca.crt -CAkey ca.pem -CAcreateserial -out test.crt -days 365 -extensions v3_ext -extfile csr.conf
