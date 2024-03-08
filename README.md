@@ -3,8 +3,6 @@
 This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. Utilize this repository to create your own Keycloak config image for customizing `uds-core`'s [Identity deployment](https://github.com/defenseunicorns/uds-core/blob/main/src/keycloak/chart/values.yaml#L10).
 
 ## UDS Tasks
-<details open>
-   <summary><i>Expand/Collapse</i></summary><br>
 
    Available tasks used by `uds run <task name>`, also can be viewed via command line by running `uds run --list`.
 
@@ -17,12 +15,8 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
    | cacert              | Get the CA cert value for the Istio Gateway |
    | debug-istio-traffic | Debug Istio traffic on keycloak             |
    | regenerate-test-pki | Generate a PKI cert for testing             |
-</details>
 
 ## New `uds-identity-config` Image
-
-<details>
-   <summary><i>Expand/Collapse</i></summary><br>
 
    Make changes, [additional jars](README.md#add-additional-jars), [customizing the theme](README.md#customize-theme), [changing the realm values](README.md#override-default-realm), [customizing the truststore](README.md#customize-truststore), or [disabling the custom plugin](README.md#replace--disable-custom-plugin).
 
@@ -54,12 +48,7 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
 
    5. [Accessing Keycloak and other documentation interacting with Keycloak](https://github.com/defenseunicorns/uds-core/blob/main/README.md#testing-uds-core-keycloak-and-authservice)
 
-</details>
-
 ## Add additional jars
-
-<details>
-   <summary><i>Expand/Collapse</i></summary><br>
 
    Adding additional jars to Keycloak's deployment is as simple as adding that jar to the [src/extra-jars directory](./src/extra-jars/).
 
@@ -69,11 +58,7 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
 
    Once `uds-core` has sucessfully deployed with your new image, viewing the Keycloak pod can provide insight into a successful deployment or not. Also describing the Keycloak pod, should display your new image being pulled instead of the default image defined [here](https://github.com/defenseunicorns/uds-core/blob/main/src/keycloak/chart/values.yaml#L10) in the events section.
 
-</details>
-
 ## Customize Theme
-<details>
-   <summary><i>Expand/Collapse</i></summary><br>
 
    #### Official Theming Docs
 
@@ -94,11 +79,8 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
          uds run dev-theme
       ```
    2. View the changes in the browser
-</details>
 
 ## Override Default Realm
-<details>
-   <summary><i>Expand/Collapse</i></summary><br>
 
    The `UDS Identity` realm is defined in the realm.json found in [src/realm.json](./src/realm.json). This can be modified and will require a new `uds-identity-config` image for `uds-core`. 
 
@@ -107,12 +89,7 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
 
    See the [New uds-identity-config Image section](./README.md#new-uds-identity-config-image) for building, publishing, and using the new image with `uds-core`.
 
-</details>
-
 ## Customize Truststore
-<details>
-   <summary><i>Expand/Collapse</i></summary><br>
-
    The default truststore is configured in a [script](./src/truststore/ca-to-jks.sh) and excuted in the [Dockerfile](./src/Dockerfile). There is a few different ways the script could be customized. 
 
    - [Change where the DoD CA zip file is pulled from.](./src/Dockerfile#L31), defualting to DOD certs but could be updated for local or another source.
@@ -181,12 +158,9 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
    openssl s_client -connect sso.uds.dev:443
    ```
    Using this command will output client ssl cert information which you can use to verify the use of the new cert.
-</details>
+
 
 ## Replace / Disable Custom Plugin
-<details>
-   <summary><i>Expand/Collapse</i></summary><br>
-
 > [!IMPORTANT]
 > This isn't recommended, however can be achieved if necessary
 
@@ -228,4 +202,3 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
    > Making these changes iteratively and importing into Keycloak to create a new realm can help to alleviate typo's and mis-configurations. This is also the quickest solution for testing without having to create,build,deploy with new images each time.
 
    Once satisfied with changes and tested that they work, see the [New uds-identity-config Image section](./README.md#new-uds-identity-config-image) for building, publishing, and using the new image with `uds-core`.
-</details>
