@@ -187,8 +187,8 @@ This repo builds the UDS Identity (Keycloak) Config image used by UDS Identity. 
 <details>
    <summary><i>Expand/Collapse</i></summary><br>
 
-   >[!IMPORTANT]
-   >This isn't recommended, however can be achieved if necessary
+>[!IMPORTANT]
+>This isn't recommended, however can be achieved if necessary
 
    The plugin provides the auth flows that keycloak uses for x509 (CAC) authentication as well as some of the surrounding registration flows.
 
