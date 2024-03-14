@@ -36,11 +36,7 @@
             <artifactId>keycloak-services</artifactId>
             <version>${keycloak.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-crypto-default</artifactId>
-            <version>${keycloak.version}</version>
-        </dependency>
+
 
         <!-- Do we need these libraries as well? -->
         <!-- 
@@ -60,6 +56,11 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpg-fips</artifactId>
             <version>1.0.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-crypto-default</artifactId>
+            <version>${keycloak.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
