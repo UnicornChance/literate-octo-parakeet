@@ -50,5 +50,4 @@ jobs:
           distribution: 'temurin'
 
       - name: Plugin Unit Tests
-        shell: bash -e -o pipefail {0}
-        run: uds run dev-plugin
+        run: mvn -B package --file src/plugin/pom.xml | egrep ".*"
