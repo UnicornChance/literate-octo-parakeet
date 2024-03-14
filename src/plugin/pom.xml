@@ -123,7 +123,6 @@
                         --add-opens=java.base/java.util.stream=ALL-UNNAMED
                         --add-opens=java.base/java.net=ALL-UNNAMED
                         --add-opens=java.base/sun.security.jca=ALL-UNNAMED
-                        -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.7/org.jacoco.agent-0.8.7-runtime.jar=destfile=target/jacoco.exec
                     </argLine>
                 </configuration>
             </plugin>
