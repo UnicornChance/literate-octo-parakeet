@@ -110,8 +110,22 @@
 				</executions>
 			</plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+                <configuration>
+                    <argLine>
+                        --add-opens=java.base/java.io=ALL-UNNAMED
+                        --add-opens=java.base/java.lang=ALL-UNNAMED
+                        --add-opens=java.base/java.util=ALL-UNNAMED
+                        --add-opens=java.base/java.util.regex=ALL-UNNAMED
+                        --add-opens=java.base/java.base=ALL-UNNAMED
+                        --add-opens=java.base/java.util.stream=ALL-UNNAMED
+                        --add-opens=java.base/java.net=ALL-UNNAMED
+                        --add-opens=java.base/sun.security.jca=ALL-UNNAMED
+                        -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.7/org.jacoco.agent-0.8.7-runtime.jar=destfile=target/jacoco.exec
+                    </argLine>
+                </configuration>
             </plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
