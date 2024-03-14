@@ -1,5 +1,39 @@
 # Changelog
 
+## [0.3.4](https://github.com/defenseunicorns/uds-identity-config/compare/v0.3.3...v0.3.4) (2024-03-04)
+
+
+### Bug Fixes
+
+* set -e on sync ([#22](https://github.com/defenseunicorns/uds-identity-config/issues/22)) ([38f3526](https://github.com/defenseunicorns/uds-identity-config/commit/38f352687b31dc6ab76bb32fcc562da8f9cce11f))
+
+## [0.3.3](https://github.com/defenseunicorns/uds-identity-config/compare/v0.3.2...v0.3.3) (2024-03-04)
+
+
+### Bug Fixes
+
+* account header username ([#19](https://github.com/defenseunicorns/uds-identity-config/issues/19)) ([a05fe97](https://github.com/defenseunicorns/uds-identity-config/commit/a05fe974d7ff8e68dc945f3885e236560de45f85))
+* update link ([#20](https://github.com/defenseunicorns/uds-identity-config/issues/20)) ([24f5a01](https://github.com/defenseunicorns/uds-identity-config/commit/24f5a01fa509a522986c69a167c4387c8a2a350c))
+
+
+### Miscellaneous
+
+* **deps:** update defenseunicorns/uds-common digest to fc12e3a ([#17](https://github.com/defenseunicorns/uds-identity-config/issues/17)) ([ceb5cd1](https://github.com/defenseunicorns/uds-identity-config/commit/ceb5cd1ebe9eb5b01cd9f85321c1f393912245e9))
+
+## [0.3.2](https://github.com/defenseunicorns/uds-identity-config/compare/v0.3.1...v0.3.2) (2024-02-29)
+
+
+### Bug Fixes
+
+* add default ocsp for CACs ([#15](https://github.com/defenseunicorns/uds-identity-config/issues/15)) ([a9bd62a](https://github.com/defenseunicorns/uds-identity-config/commit/a9bd62a72ed45a62f5ded4a88df80eafb20195dd))
+
+## [0.3.1](https://github.com/defenseunicorns/uds-identity-config/compare/v0.3.0...v0.3.1) (2024-02-29)
+
+
+### Miscellaneous
+
+* **deps:** update gha-deps ([#12](https://github.com/defenseunicorns/uds-identity-config/issues/12)) ([ba59e30](https://github.com/defenseunicorns/uds-identity-config/commit/ba59e30693aaeb7ea2d053a6c8f01d2e5af92bd5))
+
 ## [0.3.0](https://github.com/defenseunicorns/uds-identity-config/compare/v0.2.1...v0.3.0) (2024-02-28)
 
 
