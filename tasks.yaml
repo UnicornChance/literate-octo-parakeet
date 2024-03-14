@@ -62,8 +62,4 @@ tasks:
   - name: dev-plugin
     description: "Build and test the Keycloak Plugin and output jacoco report"
     actions:
-      - cmd: |
-          cd src/plugin
-          mvn install -DskipTests | egrep ".*"
-          mvn clean test | egrep ".*"
-          # mvn -B package --file src/plugin/pom.xml | egrep ".*"
+      - cmd: mvn -B package --file src/plugin/pom.xml | egrep ".*"
