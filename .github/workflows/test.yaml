@@ -50,4 +50,4 @@ jobs:
           distribution: 'temurin'
 
       - name: Plugin Unit Tests
-        run: mvn -B package --file src/plugin/pom.xml | egrep ".*"
+        run: mvn -B package --file src/plugin/pom.xml
