@@ -65,5 +65,5 @@ tasks:
       - cmd: |
           cd src/plugin
           mvn install -DskipTests | egrep ".*"
-          mvn -o test | egrep ".*"
+          mvn clean test | egrep ".*"
           # mvn -B package --file src/plugin/pom.xml | egrep ".*"
