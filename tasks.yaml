@@ -64,6 +64,6 @@ tasks:
     description: "UDS Core integration test"
     actions:
       - cmd: uds deploy ghcr.io/defenseunicorns/packages/uds/bundles/k3d-core-istio-dev:0.16.1 --confirm
-      - cmd: git clone https://github.com/defenseunicorns/uds-core.git
       - task: dev-build
+      - cmd: git clone https://github.com/defenseunicorns/uds-core.git
       - cmd: uds zarf package create . --confirm && uds zarf package deploy zarf-package-identity-* --confirm
