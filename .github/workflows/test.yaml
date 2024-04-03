@@ -2,9 +2,6 @@ name: Test
 
 on:
   push:
-  pull_request:
-    branches: [main]
-    types: [milestoned, opened, reopened, synchronize]
 
 # Abort prior jobs in the same workflow / PR
 concurrency:
@@ -29,9 +26,9 @@ jobs:
       - name: Test building the docker image
         run: uds run dev-build
 
-  uds_core_integration:
+  uds_core_base_integration:
     runs-on: ubuntu-latest
-    name: Test integration of uds-identity-config and uds-core
+    name: UDS Core + Identity Config smoke test with base realm.json
     permissions:
       pull-requests: read
       contents: read
@@ -44,4 +41,21 @@ jobs:
         uses: defenseunicorns/uds-common/.github/actions/setup@fc12e3a773580020a1d63e254525eab0f8b99fc8
 
       - name: Test building the docker image
-        run: uds run uds-core-integration-test
+        run: uds run uds-core-smoke-test
+
+  uds_core_cypress_integration:
+    runs-on: ubuntu-latest
+    name: UDS Core + Identity Config cypress integration tests
+    permissions:
+      pull-requests: read
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Environment setup
+        uses: defenseunicorns/uds-common/.github/actions/setup@fc12e3a773580020a1d63e254525eab0f8b99fc8
+
+      - name: Test building the docker image
+        run: uds run uds-core-integration-tests
