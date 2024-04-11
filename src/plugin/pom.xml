@@ -52,11 +52,11 @@
             <artifactId>snakeyaml</artifactId>
             <version>1.33</version>
         </dependency>
-        <!-- <dependency>
+        <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-core</artifactId>
             <version>6.2.8.Final</version>
-        </dependency> -->
+        </dependency>
         <!-- end new deps for kc 24 -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
