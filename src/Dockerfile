@@ -7,8 +7,10 @@ FROM cgr.dev/chainguard/maven:openjdk-17 as plugin
 
 WORKDIR /home/build
 
-RUN echo mvn -version
-RUN echo java --version
+RUN echo mvn -version > /tmp/mvn_version.log
+RUN echo java --version > /tmp/java_verison.log
+RUN less /tmp/mvn_version.log
+run less /tmp/java_version.log
 
 COPY plugin/pom.xml .
 COPY plugin/src ./src
