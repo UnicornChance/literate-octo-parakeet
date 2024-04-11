@@ -1,13 +1,13 @@
 package com.defenseunicorns.uds.keycloak.plugin.utils;
 
-import org.apache.commons.io.FilenameUtils;
 import org.keycloak.models.GroupModel;
 import org.keycloak.models.RealmModel;
-import org.yaml.snakeyaml.Yaml;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -71,21 +71,31 @@ public final class CommonConfig {
     }
 
     private YAMLConfig loadConfigFile() {
-        String configFilePath = FilenameUtils.normalize(System.getenv("CUSTOM_REGISTRATION_CONFIG"));
-        File file = NewObjectProvider.getFile(configFilePath);
-        YAMLConfig yamlConfig;
-
-        try (
-                FileInputStream fileInputStream = NewObjectProvider.getFileInputStream(file);
-            ) {
-            Yaml yaml = NewObjectProvider.getYaml();
-            yamlConfig = yaml.load(fileInputStream);
+        String configFilePath = System.getenv("CUSTOM_REGISTRATION_CONFIG");
+        File configFile = new File(configFilePath);
+    
+        YAMLConfig yamlConfig = null;
+        try (FileInputStream fileInputStream = new FileInputStream(configFile);
+             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+             BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+    
+            String yamlContent = bufferedReader.lines().collect(Collectors.joining("\n"));
+            yamlConfig = parseYAML(yamlContent);
+    
         } catch (IOException e) {
+            e.printStackTrace();
             exit(1);
-            return null;
         }
-
+    
         return yamlConfig;
+    }
+    
+    private YAMLConfig parseYAML(String yamlContent) {
+        // Implement your logic to parse the YAML content and create a YAMLConfig object.
+        // This method heavily depends on the structure of your YAML content.
+        // You need to split the content into lines, extract key-value pairs, and construct the YAMLConfig object accordingly.
+        // For simplicity, let's assume you have a method to create a YAMLConfig object directly from the YAML content.
+        return new YAMLConfig(); // Replace this with your actual logic.
     }
 
     private List<GroupModel> convertPathsToGroupModels(

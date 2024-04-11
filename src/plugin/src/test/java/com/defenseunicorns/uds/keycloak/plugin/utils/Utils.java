@@ -1,23 +1,22 @@
 package com.defenseunicorns.uds.keycloak.plugin.utils;
 
-import org.apache.commons.io.FilenameUtils;
 import org.keycloak.authentication.FormContext;
 import org.powermock.api.mockito.PowerMockito;
-import org.yaml.snakeyaml.Yaml;
 
 import com.defenseunicorns.uds.keycloak.plugin.X509Tools;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
 
 public class Utils {
 
@@ -29,7 +28,6 @@ public class Utils {
     }
 
     public static void setupFileMocks() throws Exception {
-
         final String fileContent = "x509:\n" +
                 "  userIdentityAttribute: \"usercertificate\"\n" +
                 "  userActive509Attribute: \"activecac\"\n" +
@@ -61,27 +59,27 @@ public class Utils {
         File fileMock = PowerMockito.mock(File.class);
         FileInputStream fileInputStreamMock = PowerMockito.mock(FileInputStream.class);
 
-        InputStream stream = new ByteArrayInputStream(fileContent.getBytes(StandardCharsets.UTF_8));
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(fileContent.getBytes(StandardCharsets.UTF_8));
 
         PowerMockito.whenNew(File.class).withAnyArguments().thenReturn(fileMock);
         PowerMockito.whenNew(FileInputStream.class).withAnyArguments().thenReturn(fileInputStreamMock);
+        PowerMockito.when(fileMock.exists()).thenReturn(true);
+        PowerMockito.when(fileMock.isFile()).thenReturn(true);
+        PowerMockito.when(fileMock.canRead()).thenReturn(true);
+        PowerMockito.when(fileInputStreamMock.read(any(byte[].class))).thenReturn(-1).thenReturn(0);
+        PowerMockito.when(fileInputStreamMock.read(any(byte[].class), any(int.class), any(int.class))).thenReturn(-1).thenReturn(0);
+        PowerMockito.when(fileInputStreamMock.available()).thenReturn(inputStream.available());
+        PowerMockito.when(fileInputStreamMock.read()).thenAnswer(invocation -> inputStream.read());
+        PowerMockito.when(fileInputStreamMock.read(any(byte[].class), any(int.class), any(int.class))).thenAnswer(invocation -> inputStream.read((byte[]) invocation.getArgument(0), invocation.getArgument(1), invocation.getArgument(2)));
 
-        Yaml yaml = new Yaml();
-        YAMLConfig yamlConfig = yaml.loadAs(stream, YAMLConfig.class);
 
-        final Yaml yamlMock = PowerMockito.mock(Yaml.class);
-        PowerMockito.whenNew(Yaml.class).withAnyArguments().thenReturn(yamlMock);
-
-        when(yamlMock.load(any(InputStream.class))).thenReturn(yamlConfig);
-
-        PowerMockito.mockStatic(FilenameUtils.class);
-        PowerMockito.when(FilenameUtils.normalize(System.getenv("CUSTOM_REGISTRATION_CONFIG")))
-                .thenReturn("test/filepath/file");
-
-        PowerMockito.mockStatic(NewObjectProvider.class);
-        PowerMockito.when(NewObjectProvider.getFile(anyString())).thenReturn(fileMock);
-        PowerMockito.when(NewObjectProvider.getFileInputStream(any(File.class))).thenReturn(fileInputStreamMock);
-        PowerMockito.when(NewObjectProvider.getYaml()).thenReturn(yamlMock);
+        List<String> yamlLines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                yamlLines.add(line);
+            }
+        }
     }
 
     public static X509Certificate buildTestCertificate() throws Exception {

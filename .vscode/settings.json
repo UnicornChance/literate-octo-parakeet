@@ -29,5 +29,6 @@
       "Sysctls",
       "Velero"
     ],
-    "cSpell.enabled": true
+    "cSpell.enabled": true,
+    "java.compile.nullAnalysis.mode": "automatic"
   }

@@ -1,6 +1,5 @@
 package com.defenseunicorns.uds.keycloak.plugin.utils;
 
-import org.jboss.resteasy.specimpl.ResteasyUriInfo;
 import org.keycloak.authentication.ValidationContext;
 import org.keycloak.common.ClientConnection;
 import org.keycloak.component.ComponentModel;
@@ -39,6 +38,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.MultivaluedHashMap;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.UriInfo;
 
@@ -51,7 +51,16 @@ import java.util.function.Function;
 public class ValidationUtils {
 
     public static ValidationContext setupVariables(String[] errorEvent, List<FormMessage> errors,
-                                                   MultivaluedMap<String, String> multivaluedMap) {
+                                                   Map<String, List<String>> valueMap) {
+
+
+        // Create a new MultivaluedMap to hold the data
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+
+        // Populate the MultivaluedMap with data from valueMap
+        for (Map.Entry<String, List<String>> entry : valueMap.entrySet()) {
+            formData.addAll(entry.getKey(), entry.getValue());
+        }
 
         return new ValidationContext() {
             final RealmModel realmModel = mock(RealmModel.class);
@@ -313,7 +322,7 @@ public class ValidationUtils {
                     }
 
                     @Override
-                    public ResteasyUriInfo getUri() {
+                    public UriInfo getUri() {
                         return null;
                     }
 
@@ -324,7 +333,7 @@ public class ValidationUtils {
 
                     @Override
                     public MultivaluedMap<String, String> getDecodedFormParameters() {
-                        return multivaluedMap;
+                        return formData;
                     }
 
                     @Override

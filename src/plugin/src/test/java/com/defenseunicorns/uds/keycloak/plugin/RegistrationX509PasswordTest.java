@@ -1,6 +1,5 @@
 package com.defenseunicorns.uds.keycloak.plugin;
-import org.apache.commons.io.FilenameUtils;
-import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
+
 import org.keycloak.http.HttpRequest;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,8 +28,13 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.defenseunicorns.uds.keycloak.plugin.utils.NewObjectProvider;
 import com.defenseunicorns.uds.keycloak.plugin.utils.Utils;
 
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
+
 import java.security.cert.X509Certificate;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -41,7 +45,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ FilenameUtils.class, NewObjectProvider.class, X509Tools.class })
+@PrepareForTest({ NewObjectProvider.class, X509Tools.class })
 @PowerMockIgnore("javax.management.*")
 class RegistrationX509PasswordTest {
 
@@ -141,9 +145,19 @@ class RegistrationX509PasswordTest {
     public void testValidatePasswordEmpty() {
         setupX509Mocks();
 
-        MultivaluedMapImpl<String, String>  formData = new MultivaluedMapImpl<>();
-        formData.add(RegistrationPage.FIELD_PASSWORD, "");
-        formData.add(RegistrationPage.FIELD_PASSWORD_CONFIRM, "");
+        Map<String, List<String>> formDataMap = new HashMap<>();
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD, Collections.singletonList(""));
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD_CONFIRM, Collections.singletonList(""));
+
+        // Create a MultivaluedMap instance
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+    
+        // Populate the MultivaluedMap with data from your Map
+        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
+            for (String value : entry.getValue()) {
+                formData.add(entry.getKey(), value);
+            }
+        }
 
         PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
         PowerMockito.when(validationContext.getEvent()).thenReturn(eventBuilder);
@@ -158,14 +172,24 @@ class RegistrationX509PasswordTest {
     @Test
     public void testValidateCondition1() {
         // CONDITION 1
-        MultivaluedMapImpl<String, String> formData = new MultivaluedMapImpl<>();
-        formData.add(RegistrationPage.FIELD_PASSWORD, "password");
-        formData.add(RegistrationPage.FIELD_PASSWORD_CONFIRM, "password");
-        formData.add(RegistrationPage.FIELD_EMAIL, "test.user@test.test");
-
+        Map<String, List<String>> formDataMap = new HashMap<>();
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD, Collections.singletonList("password"));
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD_CONFIRM, Collections.singletonList("password"));
+        formDataMap.put(RegistrationPage.FIELD_EMAIL, Collections.singletonList("test.user@test.test"));
+    
         mockStatic(X509Tools.class);
         PowerMockito.when(X509Tools.getX509Username(eq(validationContext))).thenReturn("something");
-
+    
+        // Create a MultivaluedMap instance
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+    
+        // Populate the MultivaluedMap with data from your Map
+        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
+            for (String value : entry.getValue()) {
+                formData.add(entry.getKey(), value);
+            }
+        }
+    
         PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
         PowerMockito.when(validationContext.getEvent()).thenReturn(eventBuilder);
         PowerMockito.when(validationContext.getSession()).thenReturn(keycloakSession);
@@ -175,26 +199,36 @@ class RegistrationX509PasswordTest {
         PolicyError policyError = new PolicyError("anything", new Object[0]);
         PowerMockito.when(validationContext.getSession().getProvider(PasswordPolicyManagerProvider.class)
             .validate(any(String.class), any(String.class))).thenReturn(policyError);
-
+    
         RegistrationX509Password registrationX509Password = new RegistrationX509Password();
         registrationX509Password.validate(validationContext);
-
+    
         // CONDITION Null
         PowerMockito.when(X509Tools.getX509Username(eq(validationContext))).thenReturn(null);
         registrationX509Password.validate(validationContext);
     }
-
+    
     @Test
     public void testValidateCondition2() {
-        // CONDITION 1
-        MultivaluedMapImpl<String, String> formData = new MultivaluedMapImpl<>();
-        formData.add(RegistrationPage.FIELD_PASSWORD, "password");
-        formData.add(RegistrationPage.FIELD_PASSWORD_CONFIRM, "password");
-        formData.add(RegistrationPage.FIELD_EMAIL, "test.user@test.test");
-
+        // CONDITION 2
+        Map<String, List<String>> formDataMap = new HashMap<>();
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD, Collections.singletonList("password"));
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD_CONFIRM, Collections.singletonList("password"));
+        formDataMap.put(RegistrationPage.FIELD_EMAIL, Collections.singletonList("test.user@test.test"));
+    
+        // Create a MultivaluedMap instance
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+    
+        // Populate the MultivaluedMap with data from your Map
+        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
+            for (String value : entry.getValue()) {
+                formData.add(entry.getKey(), value);
+            }
+        }
+    
         mockStatic(X509Tools.class);
         PowerMockito.when(X509Tools.getX509Username(eq(validationContext))).thenReturn("something");
-
+    
         PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
         PowerMockito.when(validationContext.getEvent()).thenReturn(eventBuilder);
         PowerMockito.when(validationContext.getSession()).thenReturn(keycloakSession);
@@ -204,40 +238,60 @@ class RegistrationX509PasswordTest {
         PolicyError policyError = new PolicyError("anything", new Object[0]);
         PowerMockito.when(validationContext.getSession().getProvider(PasswordPolicyManagerProvider.class)
                 .validate(any(String.class), any(String.class))).thenReturn(policyError);
-
+    
         RegistrationX509Password registrationX509Password = new RegistrationX509Password();
         registrationX509Password.validate(validationContext);
     }
-
+    
     @Test
     public void testValidateCondition3() {
         // CONDITION 3
-        MultivaluedMapImpl<String, String> formData = new MultivaluedMapImpl<>();
-        formData.add(RegistrationPage.FIELD_PASSWORD, "");
-        formData.add(RegistrationPage.FIELD_PASSWORD_CONFIRM, "");
-        formData.add(RegistrationPage.FIELD_EMAIL, "test.user@test.test");
-
+        Map<String, List<String>> formDataMap = new HashMap<>();
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD, Collections.singletonList(""));
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD_CONFIRM, Collections.singletonList(""));
+        formDataMap.put(RegistrationPage.FIELD_EMAIL, Collections.singletonList("test.user@test.test"));
+    
+        // Create a MultivaluedMap instance
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+    
+        // Populate the MultivaluedMap with data from your Map
+        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
+            for (String value : entry.getValue()) {
+                formData.add(entry.getKey(), value);
+            }
+        }
+    
         mockStatic(X509Tools.class);
         PowerMockito.when(X509Tools.getX509Username(eq(validationContext))).thenReturn("something");
-
+    
         PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
         PowerMockito.when(validationContext.getEvent()).thenReturn(eventBuilder);
-
+    
         RegistrationX509Password registrationX509Password = new RegistrationX509Password();
         registrationX509Password.validate(validationContext);
     }
-
+    
     @Test
     public void testValidateCondition4() {
-        // CONDITION 3
-        MultivaluedMapImpl<String, String> formData = new MultivaluedMapImpl<>();
-        formData.add(RegistrationPage.FIELD_PASSWORD, "");
-        formData.add(RegistrationPage.FIELD_PASSWORD_CONFIRM, "password");
-        formData.add(RegistrationPage.FIELD_EMAIL, "test.user@test.test");
-
+        // CONDITION 4
+        Map<String, List<String>> formDataMap = new HashMap<>();
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD, Collections.singletonList(""));
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD_CONFIRM, Collections.singletonList("password"));
+        formDataMap.put(RegistrationPage.FIELD_EMAIL, Collections.singletonList("test.user@test.test"));
+    
+        // Create a MultivaluedMap instance
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+    
+        // Populate the MultivaluedMap with data from your Map
+        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
+            for (String value : entry.getValue()) {
+                formData.add(entry.getKey(), value);
+            }
+        }
+    
         mockStatic(X509Tools.class);
         PowerMockito.when(X509Tools.getX509Username(eq(validationContext))).thenReturn("something");
-
+    
         PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
         PowerMockito.when(validationContext.getEvent()).thenReturn(eventBuilder);
         PowerMockito.when(validationContext.getSession()).thenReturn(keycloakSession);
@@ -247,38 +301,47 @@ class RegistrationX509PasswordTest {
         PolicyError policyError = new PolicyError("anything", new Object[0]);
         PowerMockito.when(validationContext.getSession().getProvider(PasswordPolicyManagerProvider.class)
                 .validate(any(String.class), any(String.class))).thenReturn(policyError);
-
+    
         RegistrationX509Password registrationX509Password = new RegistrationX509Password();
         registrationX509Password.validate(validationContext);
     }
 
     @Test
     public void testSuccess() {
-        setupX509Mocks();
-
+        // Success test code
+    
         // CONDITION 1
-        MultivaluedMapImpl<String, String>  formData = new MultivaluedMapImpl<>();
-        formData.add(RegistrationPage.FIELD_PASSWORD, "password");
-        formData.add(RegistrationPage.FIELD_PASSWORD_CONFIRM, "password");
-        formData.add(RegistrationPage.FIELD_EMAIL, "test.user@test.test");
-
+        Map<String, List<String>> formDataMap = new HashMap<>();
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD, Collections.singletonList("password"));
+        formDataMap.put(RegistrationPage.FIELD_PASSWORD_CONFIRM, Collections.singletonList("password"));
+        formDataMap.put(RegistrationPage.FIELD_EMAIL, Collections.singletonList("test.user@test.test"));
+    
+        // Create a MultivaluedMap instance
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+    
+        // Populate the MultivaluedMap with data from your Map
+        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
+            for (String value : entry.getValue()) {
+                formData.add(entry.getKey(), value);
+            }
+        }
+    
         PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
         PowerMockito.when(validationContext.getUser()).thenReturn(userModel);
-
+    
         RegistrationX509Password registrationX509Password = new RegistrationX509Password();
         registrationX509Password.success(validationContext);
-
+    
         // CONDITION 2
         mockStatic(X509Tools.class);
         PowerMockito.when(X509Tools.getX509Username(eq(validationContext))).thenReturn("something");
         registrationX509Password.success(validationContext);
-
+    
         // CONDITION 3
-        formData = new MultivaluedMapImpl<>();
+        formData = new MultivaluedHashMap<>();
         formData.add(RegistrationPage.FIELD_PASSWORD, "");
         PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
         registrationX509Password.success(validationContext);
-
     }
 
     @Test

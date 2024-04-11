@@ -1,17 +1,14 @@
 package com.defenseunicorns.uds.keycloak.plugin.utils;
 
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * The sole purpose of this class is to allow for unit test coverage.
- * The Jaccoco test coverage report is not fully compatible with the PowerMock testing framework.
- * This class is used in @PrepareForTest so that the Jaccoco report detects test coverage for CommonConfig class.
- */
 public final class NewObjectProvider {
 
     private NewObjectProvider() {
@@ -20,6 +17,7 @@ public final class NewObjectProvider {
 
     /**
      * Get new java.io.File object.
+     *
      * @param filePath a String
      * @return File
      */
@@ -29,6 +27,7 @@ public final class NewObjectProvider {
 
     /**
      * Get new java.io.FileInputStream object.
+     *
      * @param file a File object
      * @return FileInputStream
      */
@@ -37,10 +36,39 @@ public final class NewObjectProvider {
     }
 
     /**
-     * Get new org.yaml.snakeyaml.Yaml object.
-     * @return Yaml
+     * Parse YAML content from a file and return the resulting map.
+     *
+     * @param file File containing YAML content
+     * @return Map representing the parsed YAML content
+     * @throws FileNotFoundException if the file is not found
      */
-    public static Yaml getYaml() {
-        return new Yaml(new Constructor(YAMLConfig.class));
+    public static Map<String, Object> parseYaml(File file) throws FileNotFoundException {
+        Map<String, Object> yamlMap = new HashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(": ", 2);
+                if (parts.length == 2) {
+                    yamlMap.put(parts[0], parts[1]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return yamlMap;
+    }
+
+    /**
+     * Get YAML content from a file and return the resulting map.
+     *
+     * @param filePath path to the YAML file
+     * @return Map representing the parsed YAML content
+     * @throws FileNotFoundException if the file is not found
+     */
+    public static Map<String, Object> getYaml(String filePath) throws FileNotFoundException {
+        File file = getFile(filePath);
+        return parseYaml(file);
     }
 }
