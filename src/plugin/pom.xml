@@ -31,10 +31,23 @@
             <artifactId>keycloak-server-spi-private</artifactId>
             <version>${keycloak.version}</version>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-services</artifactId>
             <version>23.0.4</version>
+        </dependency> -->
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-services</artifactId>
+            <version>24.0.2</version>
+            <exclusions>
+                <!-- Exclude problematic dependencies here -->
+                <exclusion>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-specimpl</artifactId>
+                </exclusion>
+                <!-- Add more exclusions as needed -->
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
