@@ -7,8 +7,8 @@ module.exports = defineConfig({
       ca: [],
       certs: [
         {
-          pfx: "../../test.pfx",
-          passphrase: "pfx_passphrase.txt",
+          pfx: "certs/test.pfx",
+          passphrase: "certs/pfx_passphrase.txt",
         },
       ],
     },
@@ -19,9 +19,11 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     retries: 3,
-    specPattern: 'e2e/**/*.cy.ts',
-    supportFolder: 'support/',
-    supportFile: 'support/e2e.ts',
+    specPattern: "e2e/**/*.cy.ts",
+    supportFolder: "support/",
+    supportFile: "support/e2e.ts",
+    screenshotOnRunFailure: false,
+    video: false,
   },
 
   pageLoadTimeout: 12000,
