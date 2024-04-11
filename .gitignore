@@ -6,12 +6,11 @@ build/
 zarf-sbom
 tmp/
 cacert.b64
-ca.cer
+csr.conf
+ca.crt
 ca.pem
 test.cer
 test.csr
 test.pem
-test.pfx
 *authorized_certs*
-uds-core/
-tls_cacert.yaml
+src/extra-jars/

@@ -21,9 +21,9 @@ COPY extra-jars/* ./target/
 # Build the Java truststore from DOD CAs                                          #
 #                                                                                 #
 ###################################################################################
-FROM cgr.dev/chainguard/jdk:latest-dev as truststore
+FROM amazoncorretto:21-alpine-jdk as truststore
 USER root
-RUN apk add openssl coreutils sed=4.8-r1 bash findutils
+RUN apk add openssl coreutils sed bash findutils
 
 WORKDIR /home/build
 
@@ -55,8 +55,7 @@ COPY --chown=nonroot --from=truststore /home/build/authorized_certs.pem .
 COPY --chown=nonroot --from=truststore /home/build/truststore.jks .
 
 # The realm.json is loaded into Keycloak on startup only if the realm does not exist
-ARG REALM_FILE=realm.json
-COPY --chown=nonroot ${REALM_FILE} .
+COPY --chown=nonroot realm.json .
 
 # This provides the custom theme for the Keycloak instance
 COPY --chown=nonroot theme theme
