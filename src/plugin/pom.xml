@@ -29,12 +29,12 @@
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-server-spi-private</artifactId>
-            <version>23.0.4</version>
+            <version>${keycloak.version}</version>
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-services</artifactId>
-            <version>${keycloak.version}</version>
+            <version>23.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
