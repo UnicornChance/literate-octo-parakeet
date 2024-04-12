@@ -26,9 +26,6 @@ import com.defenseunicorns.uds.keycloak.plugin.utils.NewObjectProvider;
 import com.defenseunicorns.uds.keycloak.plugin.utils.UserModelDefaultMethodsImpl;
 import com.defenseunicorns.uds.keycloak.plugin.utils.Utils;
 
-import jakarta.ws.rs.core.MultivaluedHashMap;
-import jakarta.ws.rs.core.MultivaluedMap;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.security.GeneralSecurityException;
@@ -141,17 +138,7 @@ class RegistrationValidation2Test {
         Map<String, List<String>> formDataMap = new HashMap<>();
         formDataMap.put(Validation.FIELD_EMAIL, Collections.singletonList("test.user@test.bad"));
     
-        // Create a MultivaluedMap instance
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-    
-        // Populate the MultivaluedMap with data from your Map
-        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
-            for (String value : entry.getValue()) {
-                formData.add(entry.getKey(), value);
-            }
-        }
-
-        PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
+        PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(Utils.formDataUtil(formDataMap));
 
         RegistrationValidation registrationValidation = new RegistrationValidation();
         registrationValidation.success(validationContext);
@@ -171,18 +158,8 @@ class RegistrationValidation2Test {
         Map<String, List<String>> formDataMap = new HashMap<>();
         formDataMap.put(Validation.FIELD_EMAIL, Collections.singletonList("test.user@test.bad"));
     
-        // Create a MultivaluedMap instance
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-    
-        // Populate the MultivaluedMap with data from your Map
-        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
-            for (String value : entry.getValue()) {
-                formData.add(entry.getKey(), value);
-            }
-        }
-    
         // Mock the behavior to return the populated form data
-        PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
+        PowerMockito.when(validationContext.getHttpRequest().getDecodedFormParameters()).thenReturn(Utils.formDataUtil(formDataMap));
     
         // Call the method under test
         RegistrationValidation registrationValidation = new RegistrationValidation();

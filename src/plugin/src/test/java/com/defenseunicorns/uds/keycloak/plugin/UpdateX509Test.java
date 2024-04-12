@@ -25,9 +25,6 @@ import com.defenseunicorns.uds.keycloak.plugin.utils.CommonConfig;
 import com.defenseunicorns.uds.keycloak.plugin.utils.NewObjectProvider;
 import com.defenseunicorns.uds.keycloak.plugin.utils.Utils;
 
-import jakarta.ws.rs.core.MultivaluedHashMap;
-import jakarta.ws.rs.core.MultivaluedMap;
-
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -240,17 +237,7 @@ class UpdateX509Test {
         Map<String, List<String>> formDataMap = new HashMap<>();
         formDataMap.put("cancel", Collections.singletonList(""));
 
-        // Create a MultivaluedMap instance
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-    
-        // Populate the MultivaluedMap with data from your Map
-        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
-            for (String value : entry.getValue()) {
-                formData.add(entry.getKey(), value);
-            }
-        }
-
-        PowerMockito.when(requiredActionContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
+        PowerMockito.when(requiredActionContext.getHttpRequest().getDecodedFormParameters()).thenReturn(Utils.formDataUtil(formDataMap));
         PowerMockito.when(requiredActionContext.getAuthenticationSession()).thenReturn(authenticationSessionModel);
 
         UpdateX509 updateX509 = new UpdateX509();
@@ -264,17 +251,7 @@ class UpdateX509Test {
 
         Map<String, List<String>> formDataMap = new HashMap<>();
 
-        // Create a MultivaluedMap instance
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-    
-        // Populate the MultivaluedMap with data from your Map
-        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
-            for (String value : entry.getValue()) {
-                formData.add(entry.getKey(), value);
-            }
-        }
-
-        PowerMockito.when(requiredActionContext.getHttpRequest().getDecodedFormParameters()).thenReturn(formData);
+        PowerMockito.when(requiredActionContext.getHttpRequest().getDecodedFormParameters()).thenReturn(Utils.formDataUtil(formDataMap));
         PowerMockito.when(requiredActionContext.getAuthenticationSession()).thenReturn(authenticationSessionModel);
         PowerMockito.when(requiredActionContext.getUser()).thenReturn(userModel);
 

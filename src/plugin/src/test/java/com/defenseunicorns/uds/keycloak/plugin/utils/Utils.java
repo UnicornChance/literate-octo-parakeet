@@ -5,6 +5,9 @@ import org.powermock.api.mockito.PowerMockito;
 
 import com.defenseunicorns.uds.keycloak.plugin.X509Tools;
 
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -15,6 +18,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.any;
 
@@ -131,5 +135,19 @@ public class Utils {
         ByteArrayInputStream in = new ByteArrayInputStream(cert.getBytes());
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         return (X509Certificate) cf.generateCertificate(in);
+    }
+
+    public static MultivaluedMap<String, String> formDataUtil(Map<String, List<String>> formDataMap) {
+        // Create a MultivaluedMap instance
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+
+        // Populate the MultivaluedMap with data from your Map
+        for (Map.Entry<String, List<String>> entry : formDataMap.entrySet()) {
+            for (String value : entry.getValue()) {
+                formData.add(entry.getKey(), value);
+            }
+        }
+
+        return formData;
     }
 }

@@ -41,7 +41,6 @@ public class RegistrationValidationTest {
         setupFileMocks();
     }
 
-
     @Test
     public void testInvalidFields() {
         String[] errorEvent = new String[1];
@@ -88,7 +87,6 @@ public class RegistrationValidationTest {
     
         // Set up your test context
         ValidationContext context = ValidationUtils.setupVariables(errorEvent, errors, valueMap);
-    
         RegistrationValidation validation = new RegistrationValidation();
         validation.validate(context);
     
@@ -128,7 +126,6 @@ public class RegistrationValidationTest {
     
         // Set up your test context
         ValidationContext context = ValidationUtils.setupVariables(errorEvent, errors, valueMap);
-    
         RegistrationValidation validation = new RegistrationValidation();
         validation.validate(context);
     
@@ -140,7 +137,6 @@ public class RegistrationValidationTest {
         errorEvent = new String[1];
         errors = new ArrayList<>();
         context = ValidationUtils.setupVariables(errorEvent, errors, valueMap);
-    
         validation = new RegistrationValidation();
         validation.validate(context);
     
@@ -153,7 +149,6 @@ public class RegistrationValidationTest {
         errorEvent = new String[1];
         errors = new ArrayList<>();
         context = ValidationUtils.setupVariables(errorEvent, errors, valueMap);
-    
         validation = new RegistrationValidation();
         validation.validate(context);
     
@@ -168,7 +163,6 @@ public class RegistrationValidationTest {
     
         // Mock the behavior of X509Tools
         PowerMockito.when(X509Tools.isX509Registered(any(FormContext.class))).thenReturn(true);
-    
         validation = new RegistrationValidation();
         validation.validate(context);
     

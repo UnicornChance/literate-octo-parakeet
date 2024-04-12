@@ -53,15 +53,6 @@ public class ValidationUtils {
     public static ValidationContext setupVariables(String[] errorEvent, List<FormMessage> errors,
                                                    Map<String, List<String>> valueMap) {
 
-
-        // Create a new MultivaluedMap to hold the data
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
-
-        // Populate the MultivaluedMap with data from valueMap
-        for (Map.Entry<String, List<String>> entry : valueMap.entrySet()) {
-            formData.addAll(entry.getKey(), entry.getValue());
-        }
-
         return new ValidationContext() {
             final RealmModel realmModel = mock(RealmModel.class);
 
@@ -333,7 +324,15 @@ public class ValidationUtils {
 
                     @Override
                     public MultivaluedMap<String, String> getDecodedFormParameters() {
-                        return formData;
+                        // Create a new MultivaluedMap to hold the data
+                        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+
+                        // Populate the MultivaluedMap with data from valueMap
+                        for (Map.Entry<String, List<String>> entry : valueMap.entrySet()) {
+                            formData.addAll(entry.getKey(), entry.getValue());
+                        }
+
+                        return Utils.formDataUtil(formData);
                     }
 
                     @Override
