@@ -1,5 +1,8 @@
 package com.defenseunicorns.uds.keycloak.plugin.utils;
 
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,7 +20,6 @@ public final class NewObjectProvider {
 
     /**
      * Get new java.io.File object.
-     *
      * @param filePath a String
      * @return File
      */
@@ -27,7 +29,6 @@ public final class NewObjectProvider {
 
     /**
      * Get new java.io.FileInputStream object.
-     *
      * @param file a File object
      * @return FileInputStream
      */
@@ -36,13 +37,10 @@ public final class NewObjectProvider {
     }
 
     /**
-     * Get YAML content from a file and return the resulting map.
-     *
-     * @param filePath path to the YAML file
-     * @return Map representing the parsed YAML content
-     * @throws FileNotFoundException if the file is not found
+     * Get new org.yaml.snakeyaml.Yaml object.
+     * @return Yaml
      */
-    public static YAMLConfig getYaml(String filePath) throws FileNotFoundException {
-        return new YAMLConfig();
+    public static Yaml getYaml() {
+        return new Yaml(new Constructor(YAMLConfig.class));
     }
 }

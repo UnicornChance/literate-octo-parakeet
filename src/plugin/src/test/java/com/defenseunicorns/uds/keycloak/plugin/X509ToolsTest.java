@@ -1,5 +1,6 @@
 package com.defenseunicorns.uds.keycloak.plugin;
 
+import org.apache.commons.io.FilenameUtils;
 import org.keycloak.http.HttpRequest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,7 +36,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ NewObjectProvider.class })
+@PrepareForTest({ FilenameUtils.class, NewObjectProvider.class })
 @PowerMockIgnore("javax.management.*")
 class X509ToolsTest {
 
