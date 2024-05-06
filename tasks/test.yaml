@@ -1,0 +1,43 @@
+includes:
+  - create: ./create.yaml
+  - setup: ./setup.yaml
+  - deploy: ./deploy.yaml
+
+tasks:
+  - name: single-package
+    description: "Build and test a single package, must set UDS_PKG environment variable"
+    actions:
+      - task: create:single-package
+      - task: setup:k3d-test-cluster
+      - task: deploy:single-package
+
+      - description: "Validate the package"
+        cmd: uds run -f src/${UDS_PKG}/tasks.yaml validate --no-progress
+
+  - name: validate-packages
+    description: "Validated all packages"
+    # loop through each src/* package and run the validate.yaml task
+    actions:
+      - cmd: |
+          for package in src/*; do
+            uds run -f ${package}/tasks.yaml validate --no-progress
+          done
+          set +e
+
+  - name: uds-core
+    description: "Build and test UDS Core"
+    actions:
+      - task: create:standard-package
+      - task: create:slim-dev-package
+      - task: create:k3d-standard-bundle
+      - task: deploy:k3d-standard-bundle
+      - task: validate-packages
+
+  - name: uds-core-upgrade
+    description: "Test an upgrade from the latest released UDS Core package to current branch"
+    actions:
+      - task: setup:k3d-test-cluster
+      - task: deploy:latest-package-release
+      - task: create:standard-package
+      - task: deploy:standard-package
+      - task: validate-packages

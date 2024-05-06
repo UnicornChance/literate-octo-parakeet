@@ -1,0 +1,66 @@
+includes:
+  - common: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.11/tasks/create.yaml
+
+variables:
+  - name: FLAVOR
+    default: upstream
+
+  - name: REGISTRY1_PEPR_IMAGE
+    # renovate: datasource=docker versioning=semver
+    default: registry1.dso.mil/ironbank/opensource/defenseunicorns/pepr/controller:v0.29.2
+
+tasks:
+  - name: standard-package
+    description: "Create the UDS Core Zarf Package"
+    actions:
+      - task: pepr-build
+
+      - description: "Create the UDS Core Standard Zarf Package"
+        cmd: "uds zarf package create packages/standard --confirm --no-progress --flavor ${FLAVOR}"
+
+  - name: k3d-standard-bundle
+    description: "Create the K3d-UDS Core Bundle"
+    actions:
+      - description: "Create the UDS Core Standard Bundle"
+        cmd: "uds create bundles/k3d-standard --confirm --no-progress --architecture=${ZARF_ARCHITECTURE}"
+
+  - name: slim-dev-package
+    description: "Create the UDS Core (Istio Only) Zarf Package"
+    actions:
+      - task: pepr-build
+
+      - description: "Create the UDS Core Istio Zarf Package"
+        cmd: "uds zarf package create packages/slim-dev --confirm --no-progress --flavor ${FLAVOR}"
+
+  - name: k3d-slim-dev-bundle
+    description: "Create the K3d-UDS Core (Istio and Keycloak Only) Bundle"
+    actions:
+      - description: "Create the UDS Core Istio and Keycloak Only Bundle"
+        cmd: "uds create bundles/k3d-slim-dev --confirm --no-progress --architecture=${ZARF_ARCHITECTURE}"
+
+  - name: single-package
+    description: "Create a single Zarf Package, must set UDS_PKG environment variable"
+    actions:
+      - task: pepr-build
+
+      - description: "Create the Pepr Zarf Package, if it exists"
+        cmd: "uds zarf package create dist --confirm --no-progress"
+
+      - description: "Create the requested Zarf Package (must set UDS_PKG environment variable)"
+        cmd: "uds zarf package create src/${UDS_PKG} --confirm --no-progress --flavor ${FLAVOR}"
+
+      - description: "Create the Istio Zarf Package, if UDS_PKG != istio"
+        cmd: |
+          if [ "${UDS_PKG}" != "istio" ]; then
+            uds zarf package create src/istio --confirm --no-progress --flavor ${FLAVOR}
+          fi
+
+  - name: pepr-build
+    description: "Build the UDS Core Pepr Module"
+    actions:
+      - description: "Build the UDS Core Pepr Module"
+        cmd: |
+          CUSTOM_PEPR_IMAGE=$( [ "${FLAVOR}" = "registry1" ] && echo "--custom-image ${REGISTRY1_PEPR_IMAGE}" ) || CUSTOM_PEPR_IMAGE=""
+          rm -fr dist
+          npm ci
+          npx pepr build $CUSTOM_PEPR_IMAGE

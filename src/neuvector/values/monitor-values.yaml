@@ -1,0 +1,13 @@
+leastPrivilege: true
+
+exporter:
+  # This is disabled pending further discussion/upstream changes to handle metrics with SSO setup
+  enabled: false
+  # Disable serviceMonitor to handle standalone testing, handled by UDS Package
+  serviceMonitor:
+    enabled: false
+  apiSvc: neuvector-svc-controller-api:10443
+  svc:
+    # Temporary disabling of service to allow adding appProtocol via custom service in the config chart
+    enabled: false
+    type: ClusterIP

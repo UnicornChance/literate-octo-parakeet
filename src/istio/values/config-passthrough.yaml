@@ -1,0 +1,6 @@
+name: passthrough
+
+tls:
+  servers:
+    passthrough:
+      mode: PASSTHROUGH

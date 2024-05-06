@@ -1,0 +1,14 @@
+{{- $tls := .Values.tls }}
+{{ if $tls.cert }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gateway-tls
+  namespace: {{ .Release.Namespace }}
+data:
+  tls.crt: {{ $tls.cert }}
+  tls.key: {{ $tls.key }}
+  cacert: {{ $tls.cacert }}
+type: kubernetes.io/tls
+---
+{{ end }}

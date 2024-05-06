@@ -1,0 +1,10 @@
+readinessProbe:
+  httpGet:
+    path: /readyz
+    port: https
+    scheme: HTTPS
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  failureThreshold: 5
+metrics:
+  enabled: true

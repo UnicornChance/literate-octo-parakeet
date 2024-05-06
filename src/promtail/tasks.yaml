@@ -1,0 +1,10 @@
+tasks:
+  - name: validate
+    actions:
+      - description: Validate promail
+        wait:
+          cluster:
+            kind: Pod
+            name: app.kubernetes.io/instance=promtail
+            namespace: promtail
+            condition: Ready

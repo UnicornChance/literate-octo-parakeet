@@ -1,135 +1,103 @@
 variables:
-  - name: VERSION
-    description: "The image tag"
-    # x-release-please-start-version
-    default: "0.3.6"
-    # x-release-please-end
+  - name: FLAVOR
+    default: upstream
 
-  - name: IMAGE_NAME
-    description: "The repository + name for the published image"
-    default: "ghcr.io/defenseunicorns/uds/identity-config"
+  - name: PKG
 
-  - name: CORE_VERSION
-    description: UDS Core Version for Releases and Clone
-    # renovate: datasource=github-tags depName=defenseunicorns/uds-core versioning=semver
-    default: "0.19.0"
+  - name: K3D_IMAGE
+    default: "ghcr.io/defenseunicorns/oss/uds-k3d-k3s:v1.28.7-k3s1"
+
+includes:
+  - create: ./tasks/create.yaml
+  - setup: ./tasks/setup.yaml
+  - deploy: ./tasks/deploy.yaml
+  - test: ./tasks/test.yaml
+  - lint: ./tasks/lint.yaml
+  - common-setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v0.3.6/tasks/setup.yaml
 
 tasks:
-  - name: build-and-publish
-    description: "Build and publish the multi-arch image"
+
+  - name: default
     actions:
-      - cmd: docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag ${IMAGE_NAME}:${VERSION} src
+      - description: "Build, deploy and test UDS Core"
+        task: test-uds-core
 
-  - name: build-zarf-pkg
-    description: "Build the custom docker image and the zarf package for transporting it"
+  - name: dev-setup
     actions:
-      - cmd: docker build --tag ${IMAGE_NAME}:${VERSION} src
-      - cmd: ./uds zarf package create . --set IDENTITY_CONFIG_IMG=${IMAGE_NAME}:${VERSION} --confirm
+      - description: "Create the dev cluster"
+        task: setup:create-k3d-cluster
 
-  - name: dev-build
-    description: "Build the image locally for dev"
+      - description: "Deploy the Istio source package with Zarf Dev"
+        cmd: "uds zarf dev deploy src/istio --flavor ${FLAVOR}"
+
+      - description: "Dev instructions"
+        cmd: |
+          echo "Next steps:"
+          echo "  - To test & develop the Pepr module, run 'npx pepr dev' from a Javascript debug terminal"
+          echo "  - Otherwise run 'npx pepr deploy' to deploy the Pepr module to the cluster"
+          echo "  - Additional source packages can be deployed with 'zarf dev deploy src/<package>'"
+
+  - name: slim-dev
     actions:
-      - cmd: docker build src -t uds-core-config:keycloak --no-cache
+      - description: "Create slim dev package"
+        task: create:slim-dev-package
 
-  - name: dev-update-image
-    description: "Build the image and import locally into k3d"
+      - description: "Build slim dev bundle"
+        task: create:k3d-slim-dev-bundle
+
+      - description: "Deploy slim dev bundle"
+        task: deploy:k3d-slim-dev-bundle
+
+  - name: dev-deploy
     actions:
-      - task: dev-build
-      - cmd: |
-          k3d image import -c uds uds-core-config:keycloak
-          kubectl rollout restart statefulset -n keycloak keycloak
+      - description: "Deploy the given source package with Zarf Dev"
+        cmd: "uds zarf dev deploy src/${PKG} --flavor ${FLAVOR}"
 
-  - name: dev-theme
-    description: "Copy theme to Keycloak in dev cluster"
+  - name: setup-cluster
     actions:
-      - cmd: |
-          PV=$(kubectl get pvc keycloak-themes -n keycloak -o jsonpath='{.spec.volumeName}')
-          THEME_PATH=$(kubectl get pv $PV -o jsonpath="{.spec.hostPath.path}")
-          docker cp src/theme k3d-uds-server-0:/$THEME_PATH
+      - task: setup:k3d-test-cluster
 
-  - name: dev-plugin
-    description: "Build and test Keycloak plugin source and create maven-surefire report"
+  - name: registry-login
     actions:
-      - cmd: |
-          cd src/plugin
-          mvn surefire-report:report | egrep ".*"
+      - task: common-setup:registry-login
+        with:
+          registry: ${REGISTRY}
+          registryUsername: ${REGISTRY_USERNAME}
+          registryPassword: ${REGISTRY_PASSWORD}
+          registryRetryInterval: ${REGISTRY_RETRY_INTERVAL}
 
-  - name: cacert
-    description: "Get the CA cert value for the Istio Gateway"
+  - name: create-single-package
     actions:
-      # This is written to a file rather than printed because it is a massive value to copy out of the terminal
-      - cmd: |
-          cat <<EOF > tls_cacert.yaml
-          tls:
-            cacert: "$(docker run --rm --entrypoint sh uds-core-config:keycloak -c 'cat /home/nonroot/authorized_certs.pem | base64 -w 0')"
-          EOF
-          echo "Base64 encoded CA Cert value is in cacert.b64, this can be passed to your Istio tenant gateway for Keycloak OPTIONAL_MUTUAL"
+      - task: create:single-package
 
-  - name: debug-istio-traffic
-    description: "Debug Istio traffic on keycloak"
+  - name: create-standard-package
     actions:
-      - cmd: istioctl proxy-config log keycloak-0.keycloak --level debug
-      - cmd: kubectl -n keycloak logs keycloak-0 -c istio-proxy -f
+      - task: create:standard-package
 
-  - name: regenerate-test-pki
-    description: "Generate a PKI cert for testing"
+  - name: deploy-single-package
     actions:
-      - cmd: |
-          openssl genrsa -out test.pem 2048
-          openssl genrsa -out ca.pem 2048
-          openssl req -x509 -new -nodes -key ca.pem -sha256 -days 1825 -out ca.cer -subj "/C=US/O=U.S. Government/OU=DoD/OU=PKI/CN=DOD ID CA-59 FAKE TEST"
-          openssl req -new -key test.pem -out test.csr -config src/csr.conf -batch
-          openssl x509 -req -in test.csr -CA ca.cer -CAkey ca.pem -CAcreateserial -out test.cer -days 365 -extensions v3_ext -extfile src/csr.conf
-          openssl pkcs12 -export -out test.pfx -inkey test.pem -in test.cer -certfile ca.cer -passout pass:
-          zip src/authorized_certs ca.cer
+      - task: deploy:single-package
 
-  - name: uds-core-gateway-cacert
-    description: "Copy cacert values into istio gateways"
+  - name: deploy-standard-bundle
     actions:
-      - cmd: |
-          yq eval-all --inplace 'select(fileIndex == 0) * select(fileIndex == 1)' uds-core/src/istio/values/config-tenant.yaml src/test/cypress/certs/tls_cacert.yaml
-          yq eval-all --inplace 'select(fileIndex == 0) * select(fileIndex == 1)' uds-core/src/istio/values/config-admin.yaml src/test/cypress/certs/tls_cacert.yaml
+      - task: deploy:k3d-standard-bundle
 
-  - name: uds-core-smoke-test
-    description: "UDS Core + Identity Config smoke test with base realm.json"
+  - name: test-single-package
     actions:
-      - task: dev-build
-      - task: clone-core
-      - task: build-deploy-custom-slim
+      - task: test:single-package
 
-  - name: uds-core-integration-tests
-    description: "UDS Core + Identity Config Integration Testing"
+  - name: test-uds-core
     actions:
-      - description: Build identity config image
-        cmd: docker build --build-arg CA_ZIP_URL="test/cypress/certs/authorized_certs.zip" --build-arg REALM_FILE="test/cypress/realm.json" -t uds-core-config:keycloak --no-cache src
+      - task: test:uds-core
 
-      - task: clone-core
-
-      - description: Copy cacert value into uds-core istio gateways
-        task: uds-core-gateway-cacert
-
-      - task: build-deploy-custom-slim
-
-      - description: Run integration cypress tests
-        task: cypress-tests
-
-  - name: clone-core
-    description: "Clone UDS Core for integration testing"
+  - name: test-uds-core-upgrade
     actions:
-      - cmd: rm -rf uds-core/
-      - cmd: git clone --branch v${CORE_VERSION} https://github.com/defenseunicorns/uds-core.git
+      - task: test:uds-core-upgrade
 
-  - name: build-deploy-custom-slim
-    description: "Build/Deploy custom slim dev bundle for integration testing"
+  - name: lint-check
     actions:
-      - cmd: uds zarf package create . --confirm --set=IDENTITY_CONFIG_IMG=uds-core-config:keycloak
-      - cmd: cd uds-core && uds run create:slim-dev-package
-      - cmd: uds create bundles --confirm
-      - cmd: uds deploy bundles/uds-bundle-k3d-core-slim-dev-*.tar.zst --set=core-slim-dev.KEYCLOAK_CONFIG_IMAGE=uds-core-config:keycloak --confirm
+      - task: lint:check
 
-  - name: cypress-tests
-    description: "Run all cypress tests ( requires an existing deployed UDS Core Identity )"
+  - name: lint-fix
     actions:
-      - cmd: |
-          npm --prefix src/test/cypress install
-          npm --prefix src/test/cypress run cy.run
+      - task: lint:fix

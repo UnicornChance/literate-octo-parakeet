@@ -1,8 +1,8 @@
-# Welcome to the [NAME] UDS Capability
+# Welcome to UDS Core
 
-Thank you for your interest in this Defense Unicorns UDS Capability!
+Thank you for your interest in Defense Unicorns UDS Core!
 
-This document describes the process and requirements for contributing to this UDS Capability.
+This document describes the process and requirements for contributing to this UDS Core repo.
 
 ## Table of Contents
 
@@ -45,14 +45,14 @@ TBD
 2. **Commit Your Changes**: Make your changes and commit them. All commits must be signed.
 3. **Run Tests**: Ensure that your changes pass all tests.
 4. **Push Your Branch**: Push your branch to your fork on GitHub.
-5. **Create a Pull Request**: Open a pull request against the `main` branch of the Capability repository. Please make sure that your PR passes all CI checks.
+5. **Create a Pull Request**: Open a pull request against the `main` branch of the Bundle repository. Please make sure that your PR passes all CI checks.
 
 ### PR Requirements
 
-- PRs must be against the `main` branch.
-- PRs must pass CI checks.
-- All commits must be signed.
-- PRs should have a related issue, except for trivial fixes.
+* PRs must be against the `main` branch.
+* PRs must pass CI checks.
+* All commits must be signed.
+* PRs should have a related issue, except for trivial fixes.
 
 ## Contact
 
