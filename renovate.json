@@ -43,6 +43,13 @@
     ],
     "regexManagers": [
         {
+            "fileMatch": ["\\.*\\.ya?ml$"],
+            "matchStrings": [
+              "# renovate: datasource=docker( versioning=(?<versioning>.*?))?\n\\s+.+:\\s+(?<depName>[^:]+):(?<currentValue>.*)"
+            ],
+            "datasourceTemplate": "docker"
+        },
+        {
             "fileMatch": [".*(\\.ya?ml|\\.json)$"],
             "matchStrings": [
                 "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentValue>[^\\/]+)"
