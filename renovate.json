@@ -21,7 +21,8 @@
         "enabled": true
     },
     "helm-values": {
-        "fileMatch": [".*\\.ya?ml$"]
+        "fileMatch": [".*\\.ya?ml$"],
+        "ignorePaths": ["src/neuvector/values"]
     },
     "kubernetes": {
         "fileMatch": [".*\\.ya?ml$"],
