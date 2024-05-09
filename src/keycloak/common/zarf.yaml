@@ -9,6 +9,7 @@ components:
     charts:
       - name: keycloak
         namespace: keycloak
+        # renovate: datasource=github-tags depName=quay.io/keycloak/keycloak versioning=semver
         version: 24.0.2
         localPath: ../chart
     actions:
