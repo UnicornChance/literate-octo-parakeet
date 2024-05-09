@@ -16,7 +16,7 @@ components:
         valuesFiles:
           - values/upstream-values.yaml
     images:
-      - velero/velero:v1.13.1
+      - velero/velero:1220
       - velero/velero-plugin-for-aws:v1.9.1
       - docker.io/bitnami/kubectl:1.29.3
 
