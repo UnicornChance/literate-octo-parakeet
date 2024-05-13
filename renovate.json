@@ -81,6 +81,13 @@
             "extractVersionTemplate": "^v(?<version>.*)$"
         },
         {
+            "fileMatch": [".*\\.ya?ml$"],
+            "matchStrings": [
+                "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*brew.*@\\s*['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
+            ],
+            "extractVersionTemplate": "^v(?<version>.*)$"
+        },
+        {
             "fileMatch": [ "(^|/)zarf\\.ya?ml$" ],
             "matchStrings": [
                 "- ['\"]?(?<depName>[^\"'\\s]+):(?<currentValue>[^\"'\\s]+)['\"]?( # renovate:( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?)?(\\s|$)"
