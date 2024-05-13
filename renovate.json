@@ -77,14 +77,7 @@
             "matchStrings": [
                 "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*brew.*@\\s*['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
             ],
-            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
-            "extractVersionTemplate": "^v(?<version>.*)$"
-        },
-        {
-            "fileMatch": [".*\\.ya?ml$"],
-            "matchStrings": [
-                "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*brew.*@\\s*['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
-            ],
+            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
             "extractVersionTemplate": "^v(?<version>.*)$"
         },
         {
