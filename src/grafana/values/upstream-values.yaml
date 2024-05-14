@@ -3,12 +3,12 @@ sidecar:
     # -- The Docker registry
     registry: ghcr.io
     repository: kiwigrid/k8s-sidecar
-    tag: 1.26.1
+    tag: 1.27.1
 
 image:
   registry: docker.io
   repository: grafana/grafana
-  tag: 10.4.2
+  tag: 10.4.3
 
 initChownData:
   image:
