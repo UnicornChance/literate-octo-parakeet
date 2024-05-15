@@ -6,6 +6,7 @@ github.com/defenseunicorns/defense-unicorns-hugo-theme/dependencies v0.3.14 h1:Q
 github.com/defenseunicorns/defense-unicorns-hugo-theme/dependencies v0.3.14/go.mod h1:aJH6RH2FdhPf2HQY8gfInlkQAj6oYq/GmQ+5XKN1HzE=
 github.com/defenseunicorns/uds-cli v0.10.5-0.20240515195833-a9a16bd5c5c7 h1:82fhDhExEe5s67f8i6rqsSZKOyQ0eNm2EdnMjBAozEo=
 github.com/defenseunicorns/uds-cli v0.10.5-0.20240515195833-a9a16bd5c5c7/go.mod h1:eB5oOj6HXFmgsApetXfJkGjxYh+d069C8ZgsvsCAO8I=
+github.com/defenseunicorns/uds-cli v0.10.5-0.20240515200903-18cde5a0b42e/go.mod h1:eB5oOj6HXFmgsApetXfJkGjxYh+d069C8ZgsvsCAO8I=
 github.com/defenseunicorns/uds-core v0.21.2-0.20240515134249-350520bbf463 h1:9tCeXWOfqv8/1Sd0wvt0+v5r/qhiZpBxG0y4Sdj4+aM=
 github.com/defenseunicorns/uds-core v0.21.2-0.20240515134249-350520bbf463/go.mod h1:bIOEhd4/drRMYgoxMDKBf5DllaJT/233txdjSAu8iqo=
 github.com/twbs/bootstrap v5.3.3+incompatible h1:goFoqinzdHfkeegpFP7pvhbd0g+A3O2hbU3XCjuNrEQ=
