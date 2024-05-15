@@ -1,4 +1,0 @@
-[submodule "uds-core"]
-	path = uds-core
-	url = https://github.com/defenseunicorns/uds-core
-	branch = latest-release
