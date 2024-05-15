@@ -59,7 +59,7 @@ Lula is the compliance bridge that leverages the NIST OSCAL framework to automat
 
 ## UDS CLI
 
-The [UDS CLI](/cli/) serves as the primary interface for users to interact with various components within the UDS platform. The UDS CLI streamlines the deployment process of mission applications and secure infrastructure. The UDS CLI simplifies the tasks involved in running mission applications while maintaining regulatory compliance in a unified and efficient manner.
+The [UDS CLI](https://github.com/defenseunicorns/uds-cli/tree/main) serves as the primary interface for users to interact with various components within the UDS platform. The UDS CLI streamlines the deployment process of mission applications and secure infrastructure. The UDS CLI simplifies the tasks involved in running mission applications while maintaining regulatory compliance in a unified and efficient manner.
 
 UDS CLI simplifies deployment by bundling multiple Zarf Packages into a single deployable artifact. This process ensures that UDS Bundles, which encompass infrastructure, platform, and mission applications, can be efficiently deployed within any Mission Hero's system environment. Additionally, the UDS CLI extends its capabilities to Pepr, where multiple Pepr applications are bundled and deployed as a single Pepr Module to support UDS Bundles during runtime.
 
