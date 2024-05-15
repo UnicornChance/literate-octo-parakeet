@@ -20,15 +20,14 @@
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
+      "matchDepTypes": [
+        "devDependencies"
       ],
-      "matchDatasource": "gomod",
-      "matchPackageNames": [
-        "^github\\.com/defenseunicorns/uds-core$"
-      ],
-      "versioning": "lockFileMaintenance",
+      "automerge": true
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchDepTypes": ["indirect"],
       "enabled": true
     }
   ]
