@@ -69,6 +69,11 @@ target = "content"
 
 [[module.mounts]]
 source = "uds-core/docs"
+target = "content/core"
+excludeFiles = '**.ts'
+
+[[module.mounts]]
+source = "uds-cli/docs"
 target = "content/cli"
 excludeFiles = '**.ts'
 

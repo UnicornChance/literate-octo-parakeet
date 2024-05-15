@@ -1,0 +1,8 @@
+[submodule "uds-core"]
+	path = uds-core
+	url = https://github.com/defenseunicorns/uds-core
+	branch = uds-core-docs
+[submodule "uds-cli"]
+	path = uds-cli
+	url = https://github.com/defenseunicorns/uds-cli
+	branch = uds-cli-docs

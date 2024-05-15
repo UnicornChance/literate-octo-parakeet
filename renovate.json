@@ -5,20 +5,15 @@
       ":disableDependencyDashboard",
       "group:allNonMajor"
     ],
-    "ignorePaths": [
-      "go.sum"
-    ],
+    "git-submodules": {
+      "enabled": true
+    },
     "packageRules": [
       {
         "matchDepTypes": [
           "devDependencies"
         ],
         "automerge": true
-      },
-      {
-        "matchManagers": ["gomod"],
-        "matchDepTypes": ["direct"],
-        "enabled": true
       }
     ]
   }
