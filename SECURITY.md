@@ -2,8 +2,14 @@
 
 ## Supported Versions
 
-As [UDS Core](https://github.com/defenseunicorns/uds-core) has not yet reached v1.0.0, only the current latest minor release is supported.
+Use this section to tell people about which versions of your project are
+currently being supported with security updates.
+
+| Version | Supported          |
+| ------- | ------------------ |
+| latest  | :white_check_mark: |
+
 
 ## Reporting a Vulnerability
 
-Please email `security-notice [at] defenseunicorns.com` to report a vulnerability. If you are unable to disclose details via email, please let us know and we can coordinate alternate communications.
+Open an issue

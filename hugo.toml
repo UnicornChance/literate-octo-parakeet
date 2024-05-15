@@ -1,0 +1,88 @@
+baseURL = "https://main--uds.netlify.app/"
+enableRobotsTXT = true
+enableGitInfo = true
+
+[module]
+proxy = "direct"
+
+[[module.imports]]
+path = "github.com/defenseunicorns/defense-unicorns-hugo-theme"
+
+[[module.imports]]
+path = "github.com/defenseunicorns/defense-unicorns-hugo-theme/dependencies"
+
+[[module.imports]]
+path = "github.com/defenseunicorns/uds-core"
+
+[[module.imports.mounts]]
+source = "docs"
+target = "content/core"
+
+[languages.en]
+languageName = "English"
+
+[languages.en.params]
+title = "UDS"
+description = "Unicorn Delivery Service"
+
+[params]
+_merge = 'deep' # Use theme defaults
+copyright = "Defense Unicorns"
+github_repo = "https://github.com/defenseunicorns/uds"
+github_project_repo = "https://github.com/defenseunicorns/uds"
+github_subdir = "content/en"
+archived_version = false
+version = "v0.1.1" # x-release-please-version
+
+# version_menu = "v0.3"
+# url_latest_version = "https://main--uds.netlify.app/docs/"
+# Add your release versions here that references the deployed release branch for that version.
+# [[params.versions]]
+# version = "v0.3 - Latest"
+# url = "https://main--uds.netlify.app/docs/"
+# [[params.versions]]
+# version = "v0.2"
+# url = "https://github.com/defenseunicorns/uds/releases/tag/v0.0.2"
+[params.ui]
+navbar_logo = "img/uds-logo.svg" # The product logo on the navbar
+
+[[params.socialLinks]]
+name = "Community Slack"
+url = "https://communityinviter.com/apps/kubernetes/community"
+icon = "fa-brands fa-slack"
+desc = "Discussion and help from your fellow users"
+
+[[params.socialLinks]]
+name = "Twitter"
+url = "https://twitter.com/DefenseUnicorns"
+icon = "fa-brands fa-twitter"
+desc = "Defense Unicorns Twitter"
+
+[[params.socialLinks]]
+name = "GitHub"
+url = "https://github.com/defenseunicorns/uds"
+icon = "fa-brands fa-github"
+desc = ""
+
+[params.plantuml]
+enable = true
+theme = "default"
+svg_image_url = "https://www.plantuml.com/plantuml/svg/"
+svg = false
+
+[[module.mounts]]
+source = "content/en"
+target = "content"
+
+## The following merge in theme defaults from: https://github.com/defenseunicorns/defense-unicorns-hugo-theme/tree/main/config/_default
+[markup]
+_merge = 'shallow'
+
+[outputs]
+_merge = 'shallow'
+
+[imaging]
+_merge = 'shallow'
+
+[taxonomies]
+_merge = 'shallow'

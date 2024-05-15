@@ -1,4 +1,0 @@
-domain: "###ZARF_VAR_DOMAIN###"
-
-grafana:
-  enabled: false

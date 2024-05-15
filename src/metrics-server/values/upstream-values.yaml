@@ -1,3 +1,0 @@
-image:
-  repository: registry.k8s.io/metrics-server/metrics-server
-  tag: "v0.7.1"

@@ -1,8 +1,0 @@
-meshConfig:
-  accessLogFile: /dev/stdout
-  pathNormalization:
-    normalization: MERGE_SLASHES
-  defaultConfig:
-    holdApplicationUntilProxyStarts: true
-    gatewayTopology:
-      forwardClientCertDetails: SANITIZE

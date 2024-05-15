@@ -1,0 +1,18 @@
+[build]
+publish = "public"
+
+[build.environment]
+HUGO_VERSION = "0.125.4"
+NODE_VERSION = "20"
+TZ = "America/Los_Angeles"
+
+[context.production]
+command = "npm ci && npm run build:production"
+
+[context.branch-deploy]
+SITE_URL = "https://staging.uds.defenseunicorns.com"
+command = "npm ci && npm run build"
+
+[context.deploy-preview]
+SITE_URL = "https://dev.uds.defenseunicorns.com"
+command = "npm ci && npm run build"

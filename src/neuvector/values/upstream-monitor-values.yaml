@@ -1,5 +1,0 @@
-exporter:
-  image:
-    registry: docker.io
-    repository: neuvector/prometheus-exporter
-    tag: 5.3.2

@@ -1,5 +1,0 @@
-podSecurityContext:
-  fsGroup: 1000
-image:
-  repository: quay.io/keycloak/keycloak
-  tag: "24.0.3"
