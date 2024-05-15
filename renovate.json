@@ -6,7 +6,7 @@
       "group:allNonMajor"
     ],
     "ignorePaths": [
-      "**/go.sum"
+      "go.sum"
     ],
     "packageRules": [
       {
