@@ -27,7 +27,7 @@
     },
     {
       "matchManagers": ["gomod"],
-      "matchDepTypes": ["indirect"],
+      "matchDepTypes": ["direct"],
       "enabled": true
     }
   ]
