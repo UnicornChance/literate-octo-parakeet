@@ -5,7 +5,6 @@ go 1.21.10
 toolchain go1.22.3
 
 require (
-	github.com/defenseunicorns/uds-cli v0.10.3 // direct
 	github.com/defenseunicorns/uds-core v0.21.0 // direct
 )
 
