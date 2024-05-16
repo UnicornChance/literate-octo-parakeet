@@ -1,0 +1,3 @@
+[submodule "uds-cli"]
+	path = uds-cli
+	url = https://github.com/defenseunicorns/uds-cli
