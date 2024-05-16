@@ -5,9 +5,6 @@
       ":disableDependencyDashboard",
       "group:allNonMajor"
     ],
-    "git-submodules": {
-      "enabled": true
-    },
     "packageRules": [
       {
         "matchDepTypes": [
@@ -15,6 +12,7 @@
         ],
         "automerge": true
       }
-    ]
+    ],
+    "ignorePaths": ["go.sum"]
   }
   
