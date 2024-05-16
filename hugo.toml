@@ -18,6 +18,13 @@ path = "github.com/defenseunicorns/uds-core/docs"
 source = "."
 target = "content/core"
 
+[[module.imports]]
+path = "github.com/defenseunicorns/uds-cli/docs"
+
+[[module.imports.mounts]]
+source = "."
+target = "content/cli"
+
 [languages.en]
 languageName = "English"
 

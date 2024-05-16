@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/defenseunicorns/uds-core/docs v0.0.0-20240516170207-a2c28f4394ca // direct
+	github.com/defenseunicorns/uds-cli/docs v0.0.0-20240516171718-ab67653a9494 // direct
 )
 
 require (
