@@ -67,13 +67,6 @@ svg = false
 source = "content/en"
 target = "content"
 
-[[module.imports]]
-path = "github.com/defenseunicorns/uds-core"
-
-[[module.imports.mounts]]
-source = "docs"
-target = "content/core"
-
 ## The following merge in theme defaults from: https://github.com/defenseunicorns/defense-unicorns-hugo-theme/tree/main/config/_default
 [markup]
 _merge = 'shallow'
