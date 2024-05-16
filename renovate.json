@@ -12,6 +12,9 @@
         ],
         "automerge": true
       }
+    ],
+    "ignorePaths": [
+      "**go.sum**"
     ]
   }
   
