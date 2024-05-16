@@ -67,15 +67,19 @@ svg = false
 source = "content/en"
 target = "content"
 
-[[module.mounts]]
-source = "uds-core/docs"
-target = "content/core"
-excludeFiles = '**.ts'
+[[module.imports]]
+path = "github.com/defenseunicorns/uds-core"
 
-[[module.mounts]]
-source = "uds-cli/docs"
+[[module.imports.mounts]]
+source = "docs"
+target = "content/core"
+
+[[module.imports]]
+path = "github.com/defenseunicorns/uds-cli"
+
+[[module.imports.mounts]]
+source = "docs"
 target = "content/cli"
-excludeFiles = '**.ts'
 
 ## The following merge in theme defaults from: https://github.com/defenseunicorns/defense-unicorns-hugo-theme/tree/main/config/_default
 [markup]
