@@ -4,9 +4,7 @@ github.com/defenseunicorns/defense-unicorns-hugo-theme v0.3.14 h1:9wRNH600h4Di/w
 github.com/defenseunicorns/defense-unicorns-hugo-theme v0.3.14/go.mod h1:cFkf9mkzHTbw2j8Q3qbxF86tWHNT29k433RCvP1cOGM=
 github.com/defenseunicorns/defense-unicorns-hugo-theme/dependencies v0.3.14 h1:QzmkGte9dSa439fbVSJ4JUmDWNXkEaBQDX8CQu1Nd74=
 github.com/defenseunicorns/defense-unicorns-hugo-theme/dependencies v0.3.14/go.mod h1:aJH6RH2FdhPf2HQY8gfInlkQAj6oYq/GmQ+5XKN1HzE=
-github.com/defenseunicorns/uds-cli/docs v0.0.0-20240516171718-ab67653a9494 h1:aQAdVh1/u9e3gNNoRjuiXS+63f82bjuv61CUzclv/0s=
-github.com/defenseunicorns/uds-cli/docs v0.0.0-20240516171718-ab67653a9494/go.mod h1:ofxlSpZEpSxPvLSDrdBbXBIPpgPxBTCrHlQKoMOMTb4=
-github.com/defenseunicorns/uds-core/docs v0.0.0-20240516170207-a2c28f4394ca h1:Ges6BnrInOE7Tgcu7PfgMkImBBVnGJe/rgF8T5RAlzY=
-github.com/defenseunicorns/uds-core/docs v0.0.0-20240516170207-a2c28f4394ca/go.mod h1:LOmYVINGFpCgBQwq/KJ6fihw6dUYeV3m0mCEr42ihyk=
+github.com/unicornchance/redesigned-lamp v1.0.3 h1:0IxX0rvIqdZt+hklPTwlAu1TLzwFJWcCOdJsCpmw+gU=
+github.com/unicornchance/redesigned-lamp v1.0.3/go.mod h1:EcG4Hyrq+yeDlWUJUyfUxkTf/uetGP0N2VBGCNqkxGg=
 github.com/twbs/bootstrap v5.3.3+incompatible h1:goFoqinzdHfkeegpFP7pvhbd0g+A3O2hbU3XCjuNrEQ=
 github.com/twbs/bootstrap v5.3.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
