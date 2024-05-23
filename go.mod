@@ -3,7 +3,7 @@ module main
 go 1.20
 
 require (
-	github.com/unicornchance/redesigned-lamp v1.0.3 // direct
+	github.com/unicornchance/redesigned-lamp v1.0.0 // direct
 )
 
 require (
