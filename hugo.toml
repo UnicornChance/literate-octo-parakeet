@@ -12,18 +12,11 @@ path = "github.com/defenseunicorns/defense-unicorns-hugo-theme"
 path = "github.com/defenseunicorns/defense-unicorns-hugo-theme/dependencies"
 
 [[module.imports]]
-path = "github.com/defenseunicorns/uds-core/docs"
+path = "github.com/unicornchance/redesigned-lamp"
 
 [[module.imports.mounts]]
-source = "."
+source = "./docs"
 target = "content/core"
-
-[[module.imports]]
-path = "github.com/defenseunicorns/uds-cli/docs"
-
-[[module.imports.mounts]]
-source = "."
-target = "content/cli"
 
 [languages.en]
 languageName = "English"
