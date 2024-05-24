@@ -8,3 +8,4 @@ github.com/twbs/bootstrap v5.3.3+incompatible h1:goFoqinzdHfkeegpFP7pvhbd0g+A3O2
 github.com/twbs/bootstrap v5.3.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
 github.com/unicornchance/redesigned-lamp/docs v0.0.0-20240524192358-b343a751f853 h1:NPjPptNtZylGa5y3YxiRFQHrBuJmhnAG08hojp1U6a4=
 github.com/unicornchance/redesigned-lamp/docs v0.0.0-20240524192358-b343a751f853/go.mod h1:ZVBcha1UVOZO09Lc5YgvD6fYcb8UaO0tZfyqbbblwv0=
+github.com/unicornchance/redesigned-lamp/docs v0.0.0-20240524193015-02a8b52e5390/go.mod h1:ZVBcha1UVOZO09Lc5YgvD6fYcb8UaO0tZfyqbbblwv0=
