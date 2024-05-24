@@ -17,7 +17,8 @@
     "prepare": "husky && git submodule update --init --recursive",
     "start": "npm run clean && hugo serve",
     "test": "npm run clean && npm run lint && npm run link-check",
-    "update": "hugo mod get -u ./... && hugo mod tidy && npx npm-check-updates -u && npm install"
+    "update": "hugo mod get -u ./... && hugo mod tidy && npx npm-check-updates -u && npm install",
+    "setup": "rm -rf ./repo-docs && git clone --branch uds-identity-docs --single-branch git@github.com:defenseunicorns/uds-identity-config.git ./repo-docs/uds-identity-config && git clone --branch v1.0.8 --single-branch git@github.com:UnicornChance/redesigned-lamp.git ./repo-docs/uds-core && git clone --branch uds-cli-docs --single-branch git@github.com:defenseunicorns/uds-cli.git ./repo-docs/uds-cli && npm run start"
   },
   "devDependencies": {
     "@commitlint/cli": "19.3.0",
