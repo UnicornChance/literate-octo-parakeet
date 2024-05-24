@@ -68,7 +68,7 @@ source = "content/en"
 target = "content"
 
 [[module.mounts]]
-source = "uds-core/docs"
+source = "redesigned-lamp/docs"
 target = "content/core"
 excludeFiles = '**.ts'
 
