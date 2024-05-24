@@ -18,6 +18,13 @@ languageName = "English"
 title = "UDS"
 description = "Unicorn Delivery Service"
 
+[[module.imports]]
+path = "github.com/unicornchance/redesigned-lamp/docs"
+
+[[module.imports.mounts]]
+source = "."
+target = "content/core"
+
 [params]
 _merge = 'deep' # Use theme defaults
 copyright = "Defense Unicorns"
@@ -66,11 +73,6 @@ svg = false
 [[module.mounts]]
 source = "content/en"
 target = "content"
-
-[[module.mounts]]
-source = "redesigned-lamp/docs"
-target = "content/core"
-excludeFiles = '**.ts'
 
 ## The following merge in theme defaults from: https://github.com/defenseunicorns/defense-unicorns-hugo-theme/tree/main/config/_default
 [markup]
