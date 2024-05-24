@@ -5,6 +5,9 @@
     ":disableDependencyDashboard",
     "group:allNonMajor"
   ],
+  "git-submodules": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "matchDepTypes": [
@@ -12,12 +15,5 @@
       ],
       "automerge": true
     }
-  ],
-  "git-submodules": {
-    "enabled": true,
-    "versioning": "git",
-    "fileMatch": [
-        "(^|/)\\.gitmodules$"
-    ]
-  }
+  ]
 }
