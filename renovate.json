@@ -11,11 +11,9 @@
         "devDependencies"
       ],
       "automerge": true
-    },
-    {
-      "matchManagers": ["gomod"],
-      "matchDepTypes": ["direct"],
-      "enabled": true
     }
-  ]
+  ],
+  "git-submodules": {
+    "enabled": true
+  }
 }
