@@ -12,5 +12,16 @@
       ],
       "automerge": true
     }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^package.json$"],
+      "matchStrings": [
+        "git clone --branch (?<currentValue>[\\w.-]+) --single-branch git@github\\.com:(?<depName>[\\w-]+/[\\w-]+)\\.git"
+      ],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "{{{depName}}}",
+      "versioningTemplate": "semver"
+    }
   ]
 }
