@@ -17,7 +17,7 @@
     {
       "fileMatch": ["integrated-docs.sh"],
       "matchStrings": [
-        "git@github.com:(?<depName>[^/]+/[^\\s]+)\\s+(?<tag>[^\\s]+)"
+        "git@github.com:(?<depName>[^/]+/[^\\s]+)\\s+(?<currentValue>[^\\s]+)"
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "{{depName}}",
