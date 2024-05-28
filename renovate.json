@@ -15,13 +15,15 @@
   ],
   "regexManagers": [
     {
-      "fileMatch": ["integrated-docs.js"],
+      "fileMatch": ["integrated-docs.sh"],
       "matchStrings": [
-        "url:\\s*'git@github.com:(?<depName>[^/]+/[^']+)'[\\s\\S]*?branch:\\s*'(?<currentValue>[^']+)'"
+        "^(\\s*\"git@github.com:(?<depName>[^/]+/[^'\\s]+)\\s+(?<tag>[^'\\s]+)\\s+(?<targetDir>[^'\\s]+)\".*)$"
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "{{depName}}",
-      "versioningTemplate": "semver"
+      "versioningTemplate": "semver",
+      "groupMatch": true
     }
   ]
+  
 }

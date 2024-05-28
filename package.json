@@ -15,7 +15,7 @@
     "lint": "markdownlint ./content/**/*.md --ignore node_modules",
     "lint:fix": "markdownlint -f ./content/**/*.md ./docs/**/*.md --ignore node_modules",
     "prepare": "husky && git submodule update --init --recursive",
-    "start": "npm run clean && node integrated-docs.js && hugo serve",
+    "start": "npm run clean && bash integrated-docs.sh && hugo serve",
     "test": "npm run clean && npm run lint && npm run link-check",
     "update": "hugo mod get -u ./... && hugo mod tidy && npx npm-check-updates -u && npm install"
   },
