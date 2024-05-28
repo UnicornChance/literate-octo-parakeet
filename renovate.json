@@ -15,12 +15,12 @@
   ],
   "regexManagers": [
     {
-      "fileMatch": ["^integrated-docs\\.js$"],
+      "fileMatch": ["integrated-docs.js"],
       "matchStrings": [
-        "url: '(?<repository>[^']+\\.git)',\\s+branch: '(?<currentValue>[^']+)'"
+        "url:\\s*'(?<depName>[^']+)'[\\s\\S]*?branch:\\s*'(?<currentValue>[^']+)'"
       ],
       "datasourceTemplate": "github-tags",
-      "depNameTemplate": "{{#replace repository \".git\" \"\"}}{{/replace}}",
+      "depNameTemplate": "{{depName}}",
       "versioningTemplate": "semver"
     }
   ]
