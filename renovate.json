@@ -20,7 +20,7 @@
         "url: '(?<repository>[^']+\\.git)',\\s+branch: '(?<currentValue>[^']+)'"
       ],
       "datasourceTemplate": "github-tags",
-      "depNameTemplate": "{{repository}}",
+      "depNameTemplate": "{{#replace repository \".git\" \"\"}}{{/replace}}",
       "versioningTemplate": "semver"
     }
   ]
