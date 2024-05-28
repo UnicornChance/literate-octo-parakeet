@@ -17,10 +17,10 @@
     {
       "fileMatch": ["integrated-docs.sh"],
       "matchStrings": [
-        "\\s*\"(git@github.com:[^\"]+)\\s+([^\\s]+)\\s+[^\"]+\""
+        "git@github.com:(?<depName>[^/]+/[^\\s]+)\\s+(?<tag>[^\\s]+)"
       ],
       "datasourceTemplate": "github-tags",
-      "depNameTemplate": "{{group1}}",
+      "depNameTemplate": "{{depName}}",
       "versioningTemplate": "semver"
     }
   ]  
