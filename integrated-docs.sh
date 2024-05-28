@@ -19,9 +19,7 @@ target = "content/<name of repo>"
 
 # Define repositories to clone
 repos=(
-    "https://github.com/defenseunicorns/uds-identity-config uds-identity-docs ./repo-docs/uds-identity-config"
-    "https://github.com/unicornchance/redesigned-lamp v1.0.9 ./repo-docs/uds-core"
-    "https://github.com/defenseunicorns/uds-cli uds-cli-docs ./repo-docs/uds-cli"
+    "https://github.com/defenseunicorns v0.21.1 ./repo-docs/uds-core"
 )
 
 # Function to clone a repository
