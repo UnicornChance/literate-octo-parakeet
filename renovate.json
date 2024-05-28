@@ -15,12 +15,12 @@
   ],
   "regexManagers": [
     {
-      "fileMatch": ["^package.json$"],
+      "fileMatch": ["^integrated-docs\\.js$"],
       "matchStrings": [
-        "git clone --branch (?<currentValue>[\\w.-]+) --single-branch git@github\\.com:(?<depName>[\\w-]+/[\\w-]+)\\.git"
+        "url: '(?<repository>[^']+)',\\s+branch: '(?<currentValue>[^']+)'"
       ],
       "datasourceTemplate": "github-tags",
-      "depNameTemplate": "{{{depName}}}",
+      "depNameTemplate": "{{repository}}",
       "versioningTemplate": "semver"
     }
   ]
