@@ -17,7 +17,7 @@
     {
       "fileMatch": ["integrated-docs.js"],
       "matchStrings": [
-        "url:\\s*'(?<depName>[^']+)'[\\s\\S]*?branch:\\s*'(?<currentValue>[^']+)'"
+        "url:\\s*'git@github.com:(?<depName>[^/]+/[^']+)'[\\s\\S]*?branch:\\s*'(?<currentValue>[^']+)'"
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "{{depName}}",
