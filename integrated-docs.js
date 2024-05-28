@@ -3,20 +3,20 @@ const { execSync } = require('child_process');
 const simpleGit = require('simple-git');
 const fs = require('fs');
 
-// Define repositories and their branches/tags
+// Define repositories and their branches/tags, renovate depends on url and then branch being defined
 const repos = [
     {
-        url: 'git@github.com:defenseunicorns/uds-identity-config.git',
+        url: 'defenseunicorns/uds-identity-config.git',
         branch: 'uds-identity-docs',
         name: 'uds-identity-config'
     },
     {
-        url: 'git@github.com:UnicornChance/redesigned-lamp.git',
+        url: 'UnicornChance/redesigned-lamp.git',
         branch: 'v1.0.7',
         name: 'uds-core'
     },
     {
-        url: 'git@github.com:defenseunicorns/uds-cli.git',
+        url: 'defenseunicorns/uds-cli.git',
         branch: 'uds-cli-docs',
         name: 'uds-cli'
     }
@@ -31,7 +31,7 @@ const cloneRepo = async (repoUrl, branch, name) => {
     if (fs.existsSync(targetDir)) {
         execSync(`rm -rf ${targetDir}`);
     }
-    await git.clone(repoUrl, targetDir, ['--branch', branch, '--single-branch']);
+    await git.clone('git@github.com:'+repoUrl, targetDir, ['--branch', branch, '--single-branch']);
 };
 
 // Clone each repository
