@@ -45,5 +45,5 @@ for repo_info in "${repos[@]}"; do
     # Split the repo_info string into url, branch, and target_dir
     IFS=' ' read -r -a repo <<< "$repo_info"
     clone_repo "${repo[0]}" "${repo[1]}" "${repo[2]}"
-    echo -e "Cloned ${repo[0]} into ${repo[2]}\n"
+    echo -e "Cloned ${repo[0]}@${repo[1]} into ${repo[2]}\n"
 done
