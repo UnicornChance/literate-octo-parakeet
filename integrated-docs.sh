@@ -1,5 +1,22 @@
 #!/bin/bash
 
+: '
+Script responsible for cloning in external repository docs
+to be used in uds docs site. The defined `repos` are the external repositories
+that have a defined `docs/` directory and hugo defined markdown files. 
+
+To include a new directory, add the repo followed by the branch or tag followed by
+the target directory where that cloned repo should be stored for hugo to access it.
+
+Example:
+"<git clone url> <tag or branch> <target directory>"
+
+hugo.toml entry:
+[[module.mounts]]
+source = "<target directory>/docs"
+target = "content/<name of repo>"
+'
+
 # Define repositories to clone
 repos=(
     "git@github.com:defenseunicorns/uds-identity-config v0.4.2 ./repo-docs/uds-identity-config"
