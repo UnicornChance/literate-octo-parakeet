@@ -6,18 +6,18 @@ const fs = require('fs');
 // Define repositories and their branches/tags, renovate depends on url and then branch being defined
 const repos = [
     {
-        url: 'git@github.com:defenseunicorns/uds-identity-config.git',
-        branch: 'uds-identity-docs',
+        url: 'git@github.com:defenseunicorns/uds-identity-config',
+        branch: 'v0.4.3',
         name: 'uds-identity-config'
     },
     {
-        url: 'git@github.com:defenseunicorns/uds-core.git',
+        url: 'git@github.com:defenseunicorns/uds-core',
         branch: 'v0.22.0',
         name: 'uds-core'
     },
     {
-        url: 'git@github.com:defenseunicorns/uds-cli.git',
-        branch: 'uds-cli-docs',
+        url: 'git@github.com:defenseunicorns/uds-cli',
+        branch: 'v0.10.4',
         name: 'uds-cli'
     }
 ];
@@ -29,6 +29,7 @@ const cloneRepo = async (repoUrl, branch, name) => {
     const targetDir = targetFolder + name;
     const git = simpleGit();
     if (fs.existsSync(targetDir)) {
+        console.log(`Removing existing cloned dir: ${targetDir}`);
         execSync(`rm -rf ${targetDir}`);
     }
     await git.clone(repoUrl, targetDir, ['--branch', branch, '--single-branch']);
