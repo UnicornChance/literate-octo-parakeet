@@ -17,7 +17,7 @@
     {
       "fileMatch": ["^integrated-docs\\.js$"],
       "matchStrings": [
-        "url: '(?<repository>[^']+)',\\s+branch: '(?<currentValue>[^']+)'"
+        "url: '(?<repository>[^']+\\.git)',\\s+branch: '(?<currentValue>[^']+)'"
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "{{repository}}",
