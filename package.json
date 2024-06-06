@@ -1,6 +1,6 @@
 {
   "name": "uds",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "UDS Documentation site",
   "license": "Apache 2.0",
   "author": "Defense Unicorns",
@@ -9,13 +9,13 @@
   },
   "scripts": {
     "build": "npm run clean && bash integrated-docs.sh && hugo",
-    "build:production": "hugo --gc --minify",
+    "build:production": "bash integrated-docs.sh && hugo --gc --minify",
     "clean": "rimraf public",
     "link-check": "npm run build && linkinator ./public --config .linkinator.config.json ",
     "lint": "markdownlint ./content/**/*.md --ignore node_modules",
     "lint:fix": "markdownlint -f ./content/**/*.md ./docs/**/*.md --ignore node_modules",
-    "prepare": "husky && git submodule update --init --recursive",
-    "start": "npm run clean && hugo serve",
+    "prepare": "husky install",
+    "start": "npm run clean && bash integrated-docs.sh && hugo serve",
     "test": "npm run clean && npm run lint && npm run link-check",
     "update": "hugo mod get -u ./... && hugo mod tidy && npx npm-check-updates -u && npm install"
   },
@@ -26,7 +26,7 @@
     "hugo-extended": "0.126.1",
     "husky": "9.0.11",
     "linkinator": "6.0.4",
-    "markdownlint-cli": "0.41.0",
+    "markdownlint-cli": "0.40.0",
     "postcss-cli": "11.0.0",
     "prettier": "3.2.5",
     "rimraf": "5.0.7"

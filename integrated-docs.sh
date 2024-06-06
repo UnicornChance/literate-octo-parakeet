@@ -19,7 +19,8 @@ target = "content/<name of repo>"
 
 # Define repositories to clone
 repos=(
-    "https://github.com/defenseunicorns/uds-core v0.21.1 ./repo-docs/uds-core"
+    "https://github.com/defenseunicorns/uds-core.git v0.22.0 ./repo-docs/uds-core"
+    "https://github.com/defenseunicorns/uds-identity-config.git v0.4.4 ./repo-docs/uds-identity-config"
 )
 
 # Function to clone a repository
@@ -35,7 +36,7 @@ clone_repo() {
     fi
     
     # Clone the repository with specific branch/tag
-    git clone --branch "$branch" --single-branch "$repo_url" "$target_dir" > /dev/null 2>&1
+    git clone --branch "$branch" --single-branch "$repo_url" "$target_dir"
 }
 
 # Loop through each repository and clone it

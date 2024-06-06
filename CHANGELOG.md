@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.2.1](https://github.com/defenseunicorns/uds/compare/uds-v0.2.0...uds-v0.2.1) (2024-06-04)
+
+
+### Bug Fixes
+
+* add git clone script to start and production build scripts ([c53f6fe](https://github.com/defenseunicorns/uds/commit/c53f6fe88ae2882b8109f3f914958095e4f5b0c5))
+
+## [0.2.0](https://github.com/defenseunicorns/uds/compare/uds-v0.1.1...uds-v0.2.0) (2024-05-29)
+
+
+### Features
+
+* add integrated docs from uds-core ([d7e9ea1](https://github.com/defenseunicorns/uds/commit/d7e9ea10ed4c1fa5210f3d3ef3d6327feb986b2e))
+
+
+### Bug Fixes
+
+* add log for public dir ([c373b0c](https://github.com/defenseunicorns/uds/commit/c373b0c25c3d1a2035a832e62614b3b707896b36))
+* investigating where cloned repo is ([502b7b9](https://github.com/defenseunicorns/uds/commit/502b7b9f6e5184d6c5f07177cd51f55f7825cc35))
+* more debug fixes ([15a1aa3](https://github.com/defenseunicorns/uds/commit/15a1aa378be6a4c719b99d2ba52054dc4d93c624))
+* remove debugging and fix renovate ([f2734c0](https://github.com/defenseunicorns/uds/commit/f2734c0fd559ea0a13ac2faea82db3c4e840a578))
+* remove docs that now live in uds-core ([298ed88](https://github.com/defenseunicorns/uds/commit/298ed883a8f5eebd19c5680fd3d4b0a75b1d6cb2))
+* remove key gen ([17b1c85](https://github.com/defenseunicorns/uds/commit/17b1c852305c6b96e0ac21ccae095921d3995de0))
+* switch to https clone ([106f126](https://github.com/defenseunicorns/uds/commit/106f126b51b10f131e28cff65f9377223b529164))
+* testing output ([459df6e](https://github.com/defenseunicorns/uds/commit/459df6ecd29422b29caed4a5cb70b62bf1500513))
+
 ## [0.1.1](https://github.com/defenseunicorns/uds/compare/uds-v0.1.0...uds-v0.1.1) (2024-05-14)
 
 

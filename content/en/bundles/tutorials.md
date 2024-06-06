@@ -6,12 +6,12 @@ weight: 1
 
 ## Sample Application with UDS Core
 
-This tutorial uses [UDS CLI](https://github.com/defenseunicorns/uds-cli/tree/main) to deploy an example application, [podinfo](https://github.com/stefanprodan/podinfo), on top of UDS Core as a UDS Bundle.
+This tutorial uses [UDS CLI](/cli/) to deploy an example application, [podinfo](https://github.com/stefanprodan/podinfo), on top of UDS Core as a UDS Bundle.
 
 ### Prerequisites
 
 - [Zarf](https://docs.zarf.dev/getting-started/)
-- [UDS CLI](https://github.com/defenseunicorns/uds-cli/tree/main/docs)
+- [UDS CLI](/cli/quickstart/)
 - [Docker](https://www.docker.com/)
 - [k3d](https://k3d.io/v5.6.0/)
 
