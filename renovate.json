@@ -223,10 +223,14 @@
       "labels": ["renovate/helm-release", "dependency/patch"]
     },
     {   
-        "description": "Group Github Actions updates.",
-        "matchPaths": [".github/**"],
-        "groupName": "GHA-DEPS",
-        "matchManagers": ["regex"]
+      "description": "Group Github Actions updates.",
+      "matchPaths": [".github/**"],
+      "groupName": "GHA-DEPS"
+    },
+    {   
+      "description": "Group regex manager updates.",
+      "matchPaths": ["^tasks.ya?ml$", "^tasks/.*\\.ya?ml$", "^\\.vscode/settings\\.json$"],
+      "groupName": "GHA-DEPS"
     }
   ]
 }
