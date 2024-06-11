@@ -7,17 +7,6 @@
     "replacements:all",
     "workarounds:all"
   ],
-  "hostRules": [
-    {
-        "matchHost": "registry1.dso.mil",
-        "hostType": "docker",
-        "description": "Encrypted creds for registry1, scoped to this Github org using: https://github.com/renovatebot/renovate/blob/main/docs/usage/configuration-options.md#encrypted",
-        "encrypted": {
-        "username": "wcFMA/xDdHCJBTolAQ//QdIPbsh+aThsIpTWu0DthS6RVA6wocOrBwJFtorYA+r8cdPstKvWoM1AGKwBpyeybkeCXYgZKe9bdT+F0S5D2JiPUg4UWAzqfSNTfBdZ3ROwpfKU8CK70hrWnfn/78UhoQ6mH8xGm74v/UoVL4VWsIU1Apmx6CANQnW1AolVCiaX66NZ1YRJr7GWDZiDeZ5RVX0H9q68LUwX8czv4HfGIwBsoykqAgncDofIMRv2RYHay38QbAKFil8ZH6dgvHPpvb9hzpq22ofBiWZ3FjZa26SMZuw7P4gPh3u2Poidn92CrUQL4uM5Tw58u4SNmxYAgJzpOXAAByXtwblaLyInQw6ardu4IVb+UXZKzAxYKhuk73drxVjux+rQO8xKTQZKY105UxS6+wyvjx/HfqRZdLG2jbJFRleMOMzGzToQMS0sK5YpCUJUU++zZNy5SAPUGsoZL2254B4SfgEBclz5Ncm2cgT45VkFwK1RhSxHoskPQW3ZhAAFfeEYoS+FZVaJxqyqUznClfvKMRAV35tChkTXZTpG0FCdUTABj02tIiBWpIdAvVXCaEInvmqGSeQNU5i9UleVeKZcCMbdHs1JEsmICf0dk77sXgI4k2eoJIEaClIDTmEd3K8IKGIowKyHKdSjbgw9v6ExzLc8V2kwx221S3idFkKQHzZDoQCrbSvSYgH6O04Bug1saZeq+PcAc02kiyYl1q5gQkXhWn9uniucctVx3RDYWlPdApPuTsf1bdIpauyTC4Ylsb20rYOuBVjdibTXt0nkN6Nxzy9LHHA9jrSCi25pegPWwwjDo9oOxpUx",
-        "password": "wcFMA/xDdHCJBTolAQ/7BzIvWPX57V843FmhDMzXCHrQldPHrwE2TotQMTCkoagJTGAks35rSrU6D01c2MUYwgh65FgZm6WZQ+2QU3F0hNsqEOFIAWNXczw5zlGKjuNInKQlsnRsCjIRynXZ8IH9MEBZAuMF+baMOp0Oo+3xflEGbKCPKvE+2S5hV/Rcb37rMsFSPx2a5qviARN049OAdf78Osr2TG+Wi36eS50pwir1YmidVD2L4FtmnsU958PNa0nVpvWLKlMhjGbfotwpYNDvZp63O/21NWvLoGR1D4c7cgCcn29DUPiq1eQ2F1Ai+wWVQEyc2inVBKRDRd1/9GWcjSZepX+NTQh9xiP5nnuyoImJuvPly1dAI8UwOvGvmMRfeo/dbphzJSugE9wrDrymXTwlfFHGHYAnXbowvSi7gPxbWXvHRr/lHNQJ8rjr3olm3no2svZa8fxqj+6t1phGU+0TQ4LQb8liVw5/G8s/3Xk8f09KaqGpNNk8WzbEF1xW4O9yg/Y0fU6O6irbQLrCcXAinA/7rLQ9pBUGUfZHnaY5K/HBNrKZke+mMjYah+cXQ7nFX2zUFKe6w4zasJk2r8jCu08EBKPrfeHNeZj1ST4OEQPJe9VTMOED5A2Nkq7zkwkYAy7GZtCQ4VjPR/W423lOGDkif+MjApj4nxwwnQjmn/26ApSWN6BHmJXSXQENpwjUjy5MvHtEdjhBt6y2d9JuxrdwU0PN4JcZ307jk8gMHBNm/oRPt18o59K8k205+BbivC5Ux5rZyF22dzsw68kjUWv68Ov9tBNkMxw7Tciw6WojZX2ma+wPOA"
-        }
-    }
-  ],
   "packageRules": [
     {
       "datasources": ["helm"],
