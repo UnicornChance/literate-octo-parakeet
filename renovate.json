@@ -223,12 +223,11 @@
       "labels": ["renovate/helm-release", "dependency/patch"]
     },
     {   
-      "description": "Group Github Actions and vscode/settings updates.",
+      "description": "Group Github Actions updates.",
       "matchPaths": [".github/**"],
       "groupName": "GHA-DEPS"
     },
     {
-      "datasources": ["github-tags"],
       "matchPaths": ["^\\.vscode/settings\\.json$"],
       "groupName": "GHA-DEPS"
     }
