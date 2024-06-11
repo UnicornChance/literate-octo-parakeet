@@ -1,0 +1,34 @@
+name: Metadata
+
+on:
+  pull_request:
+    branches: [main]
+    # milestoned is added here as a workaround for release-please not triggering PR workflows (PRs should be added to a milestone to trigger the workflow).
+    types: [milestoned, opened, edited, synchronize]
+
+jobs:
+  title_check:
+    runs-on: ubuntu-latest
+    name: Validate PR Title
+    permissions:
+      pull-requests: read
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+
+      - name: Install commitlint
+        run: |
+          npm install --save-dev @commitlint/config-conventional@19.2.2
+          npm install --save-dev @commitlint/cli@19.3.0
+
+      - name: Lint PR title
+        env:
+          pull_request_title: ${{ github.event.pull_request.title }}
+        run: echo "$pull_request_title" | npx commitlint
