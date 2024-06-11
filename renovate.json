@@ -224,11 +224,7 @@
     },
     {   
       "description": "Group Github Actions updates.",
-      "matchPaths": [".github/**"],
-      "groupName": "GHA-DEPS"
-    },
-    {
-      "matchPaths": ["^\\.vscode/settings\\.json$"],
+      "matchPaths": [".github/**", ".vscode/settings.json"],
       "groupName": "GHA-DEPS"
     }
   ]
