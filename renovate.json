@@ -169,94 +169,64 @@
               "(?m)repository: [\"']?(?<depName>.+?)[\"']?$(.)*(\n.*){0,2}ref: [\"']?(?<currentValue>.+?)[\"']?$"
           ],
           "datasourceTemplate": "docker"
-      }
+      },
+      {
+        "fileMatch": ["^tasks.ya?ml$", "^tasks/.*\\.ya?ml$", "^\\.vscode/settings\\.json$"],
+        "matchStrings": [
+           "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentValue>[^\\/]+)"
+        ],
+        "versioningTemplate": "semver-coerced",
+        "datasourceTemplate": "github-tags"
+      } 
   ],
   "packageRules": [
-      {
-          "matchPackageNames": ["registry1.dso.mil/ironbank/big-bang/base"],
-          "allowedVersions": "!/8.4/"
-      },
-      {
-          "matchFileNames": ["src/istio/**"],
-          "groupName": "istio",
-          "commitMessageTopic": "istio"
-      },
-      {
-          "matchFileNames": ["src/promtail/**"],
-          "groupName": "promtail",
-          "commitMessageTopic": "promtail"
-      },
-      {
-          "matchFileNames": ["src/velero/**"],
-          "groupName": "velero",
-          "commitMessageTopic": "velero"
-      },
-      {
-          "matchFileNames": ["src/tempo/**"],
-          "groupName": "tempo",
-          "commitMessageTopic": "tempo"
-      },
-      {
-          "matchFileNames": ["src/prometheus-stack/**"],
-          "groupName": "prometheus-stack",
-          "commitMessageTopic": "prometheus-stack"
-      },
-      {
-          "matchFileNames": ["src/neuvector/**"],
-          "groupName": "neuvector",
-          "commitMessageTopic": "neuvector"
-      },
-      {
-          "matchFileNames": ["src/metrics-server/**"],
-          "groupName": "metrics-server",
-          "commitMessageTopic": "metrics-server"
-      },
-      {
-          "matchFileNames": ["src/loki/**"],
-          "groupName": "loki",
-          "commitMessageTopic": "loki"
-      },
-      {
-          "matchFileNames": ["src/kiali/**"],
-          "groupName": "kiali",
-          "commitMessageTopic": "kiali"
-      },
-      {
-          "matchFileNames": ["src/keycloak/**"],
-          "groupName": "keycloak",
-          "commitMessageTopic": "keycloak"
-      },
-      {
-          "matchFileNames": ["src/grafana/**"],
-          "groupName": "grafana",
-          "commitMessageTopic": "grafana"
-      },
-      {
-          "matchPackageNames": ["defenseunicorns/zarf"],
-          "groupName": "zarf",
-          "commitMessageTopic": "zarf"
-      },
-      {
-          "matchPackageNames": ["defenseunicorns/uds-cli"],
-          "groupName": "uds",
-          "commitMessageTopic": "uds"
-      },
-      {
-          "matchPackageNames": ["defenseunicorns/uds-k3d"],
-          "groupName": "uds-k3d",
-          "commitMessageTopic": "uds-k3d"
-      },
-      { 
-          "matchFileNames": [".github/**"],
-          "excludePackageNames": ["defenseunicorns/zarf","defenseunicorns/uds-cli"],
-          "groupName": "githubactions",
-          "commitMessageTopic": "githubactions",
-          "pinDigests": true
-      },
-      {
-          "matchFileNames": ["package.json", "package-lock.json", "tasks/create.yaml"],
-          "groupName": "pepr",
-          "commitMessageTopic": "pepr"
-      }
+    {
+      "datasources": ["helm"],
+      "commitMessageTopic": "Helm chart {{depName}}",
+      "separateMinorPatch": true
+    },
+    {
+      "datasources": ["docker"],
+      "commitMessageTopic": "Docker image {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}",
+      "enabled": true,
+      "separateMinorPatch": true
+    },
+    {
+      "datasources": ["docker"],
+      "updateTypes": ["major"],
+      "labels": ["renovate/image-release", "dependency/major"]
+    },
+    {
+      "datasources": ["docker"],
+      "updateTypes": ["minor"],
+      "labels": ["renovate/image-release", "dependency/minor"]
+    },
+    {
+      "datasources": ["docker"],
+      "updateTypes": ["patch"],
+      "labels": ["renovate/image-release", "dependency/patch"]
+    },
+    {
+      "datasources": ["helm"],
+      "updateTypes": ["major"],
+      "labels": ["renovate/helm-release", "dependency/major"]
+    },
+    {
+      "datasources": ["helm"],
+      "updateTypes": ["minor"],
+      "labels": ["renovate/helm-release", "dependency/minor"]
+    },
+    {
+      "datasources": ["helm"],
+      "updateTypes": ["patch"],
+      "labels": ["renovate/helm-release", "dependency/patch"]
+    },
+    {   
+        "description": "Group Github Actions updates.",
+        "matchPaths": [".github/**"],
+        "groupName": "GHA-DEPS",
+        "matchManagers": ["regex"]
+    }
   ]
 }
