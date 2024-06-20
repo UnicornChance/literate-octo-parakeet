@@ -7,31 +7,41 @@
 This site uses the [Defense Unicorns](https://github.com/defenseunicorns/defense-unicorns-hugo-theme) theme for Hugo
 which is a fork of the Google Docsy theme. The Docsy documentation can be used as a guide for [building content](https://www.docsy.dev/docs/adding-content/).
 
-## Contributing
+## Adding content
 
-This repository enforces [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) messages. See the
-documentation for [`release-please`](https://github.com/googleapis/release-please#how-should-i-write-my-commits) for
-correctly formatting commit messages
+This repository does not contain any content. Instead, it uses the [documentation from the uds-core project](https://github.com/defenseunicorns/uds-core/tree/main/docs) repository and
+[transforms it during the build](scripts/update_docs.sh) into markdown that Hugo can understand. Because of this, there are certain standards required for the documentation to be published correctly.
 
-## Getting Started
-
-Clone this repository
-
-```bash
-git clone git@github.com:defenseunicorns/uds.git
-cd uds
-npm ci
-```
-
-To run the site for local development:
+1. Currently, only documentation in the `docs` folder will be published.
+2. There must be at least one `README.md` or `index.md` index file. This file acts as the menu header. It can contain
+   text or not, but it must at least have an H1 with the menu title. If the file exists in `docs` then all other files will be
+   treated as child documents.
+   ex:
 
 ```bash
-npm start
+/docs
+    README.md
 ```
 
-Then navigate to [http://localhost:1313/](http://localhost:1313/)
+If there is a need for multiple menu items, then make sure there is no index file in the
+   `docs` folder and create folders under `docs` that each have an index file and their children will be sub-sections of
+   that menu.
 
-## Deploy to production
+```bash
+/docs
+    /menu1
+        README.md
+    /menu2
+        README.md
+```
 
-See [Production Deploy](https://github.com/defenseunicorns/company-website/blob/main/doc/production-deploy.md) for
-details.
+## Adding a new Repo
+```bash
+git submodule add -b main https://github.com/UnicornChance/ideal-eureka.git submodules/ideal-eureka
+```
+
+
+## Publishing
+
+Publishing content is automatic. This repository includes uds-core as a git submodule. It is using Renovate to monitor
+changes to uds-core. Any change to uds-core `main` will trigger Renovate to do an update and publish to Netlify.

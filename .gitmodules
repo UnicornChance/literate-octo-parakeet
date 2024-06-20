@@ -1,0 +1,8 @@
+[submodule "submodules/redesigned-lamp"]
+	path = submodules/redesigned-lamp
+	url = https://github.com/UnicornChance/redesigned-lamp.git
+	branch = main
+[submodule "submodules/ideal-eureka"]
+	path = submodules/ideal-eureka
+	url = https://github.com/UnicornChance/ideal-eureka.git
+	branch = main

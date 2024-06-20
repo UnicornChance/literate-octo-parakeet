@@ -2,26 +2,33 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
-    ":disableDependencyDashboard",
+    ":dependencyDashboard",
     "group:allNonMajor"
   ],
+  "automerge": true,
+  "automergeType": "branch",
+  "platformAutomerge": true,
+  "labels": [
+    "renovate",
+    "dependencies"
+  ],
+  "git-submodules": {
+    "enabled": true
+  },
   "packageRules": [
     {
-      "matchDepTypes": [
-        "devDependencies"
+      "automerge": true,
+      "matchDatasources": [
+        "git-submodule"
       ],
-      "automerge": true
-    }
-  ],
-  "regexManagers": [
-    {
-      "fileMatch": ["integrated-docs.sh"],
-      "matchStrings": [
-        "\"(https://github.com/(?<depName>[^/]+/[^\\s]+)\\s+(?<currentValue>[^\\s]+)\\s+[^\\s]+)\""
+      "matchPaths": [
+        "submodules/lula",
+        "submodules/lula2"
       ],
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "{{depName}}",
-      "versioningTemplate": "semver"
+      "enabled": true,
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "submodule",
+      "commitMessageTopic": "Update docs from submodules"
     }
   ]
 }
