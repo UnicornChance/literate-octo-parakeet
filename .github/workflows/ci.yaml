@@ -1,0 +1,54 @@
+name: Build and Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+    paths-ignore:
+      - '.github/ISSUE_TEMPLATE/**'
+      - 'doc/**'
+      - 'docs/**'
+      - 'CODEOWNERS'
+      - 'CONTRIBUTING.md'
+      - 'LICENSE'
+      - 'README.md'
+  pull_request:
+    branches: ['main']
+    paths-ignore:
+      - '.github/ISSUE_TEMPLATE/**'
+      - 'doc/**'
+      - 'docs/**'
+      - 'CODEOWNERS'
+      - 'CONTRIBUTING.md'
+      - 'LICENSE'
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Get Node Version
+        run: |
+          if [ -f .nvmrc ]; then
+            echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_ENV
+          else
+            echo "NODE_VERSION=20" >> $GITHUB_ENV
+          fi
+        shell: bash
+
+      - name: Run Tests
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
