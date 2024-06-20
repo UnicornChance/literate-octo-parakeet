@@ -10,7 +10,7 @@
   "scripts": {
     "build": "npm run clean && bash scripts/update_docs.sh && hugo",
     "build:production": "bash scripts/update_docs.sh && hugo --gc --minify",
-    "clean": "rm -Rf public resources && hugo mod clean",
+    "clean": "rm -Rf public resources content/en/* && hugo mod clean",
     "format:toml": "taplo format '**/**/*.toml'",
     "link-check": "npm run build && linkinator ./public --config .linkinator.config.json ",
     "lint": "markdownlint ./content/**/*.md --ignore node_modules",

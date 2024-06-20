@@ -4,6 +4,9 @@
 SUBMODULES_PATH="submodules"
 HUGO_CONTENT_PATH="content/en"
 
+# copy uds-docs to site content
+rm -rf content/en/*
+cp -r docs/* $HUGO_CONTENT_PATH
 
 # Iterate over each submodule directory in the submodules path
 for SUBMODULE_PATH in $SUBMODULES_PATH/*; do
@@ -22,9 +25,6 @@ for SUBMODULE_PATH in $SUBMODULES_PATH/*; do
     DEST_PATH="$HUGO_CONTENT_PATH/$SUBMODULE_NAME"
 
     echo "Destination path : $DEST_PATH"
-    
-    # Remove the existing repo docs directory
-    rm -rf "$DEST_PATH"
     
     # Recreate directory structure for repo submodule docs
     mkdir -p "$DEST_PATH"
