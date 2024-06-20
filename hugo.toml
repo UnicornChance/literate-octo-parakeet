@@ -28,7 +28,7 @@ github_repo = "https://github.com/defenseunicorns/uds"
 github_project_repo = "https://github.com/defenseunicorns/uds"
 github_subdir = "content/en"
 archived_version = false
-version = "v0.3.0" # x-release-please-version
+version = "v0.4.0" # x-release-please-version
 
 # version_menu = "v0.3"
 # url_latest_version = "https://main--uds.netlify.app/docs/"
