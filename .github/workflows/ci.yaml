@@ -1,9 +1,11 @@
-name: CI
+name: Build and Test
 
 on:
   push:
-    branches:
-      - main
+    branches: ['main']
+
+  pull_request:
+    branches: ['main']
 
 jobs:
   build:
