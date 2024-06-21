@@ -6,7 +6,7 @@ weight: 1
 
 ## Sample Application with UDS Core
 
-This tutorial uses [UDS CLI](/cli/) to deploy an example application, [podinfo](https://github.com/stefanprodan/podinfo), on top of UDS Core as a UDS Bundle.
+This tutorial uses UDS CLI to deploy an example application, [podinfo](https://github.com/stefanprodan/podinfo), on top of UDS Core as a UDS Bundle.
 
 ### Prerequisites
 
