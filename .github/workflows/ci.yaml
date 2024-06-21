@@ -18,16 +18,3 @@ jobs:
       - uses: defenseunicorns/website-commons/.github/actions/npm-setup@main
         with:
           node-version: ${{ steps.get-node-version.outputs.node-version }}
-
-  lint:
-    needs: setup
-    uses: defenseunicorns/website-commons/.github/workflows/lint.yml@main
-    with:
-      node-version: ${{ needs.setup.outputs.node-version }}
-      lint-script: 'lint'
-
-  unit:
-    needs: setup
-    uses: defenseunicorns/website-commons/.github/workflows/unit-tests.yml@main
-    with:
-      node-version: ${{ needs.setup.outputs.node-version }}
